@@ -1,0 +1,19 @@
+.logo img {
+  width: 5rem;
+  height: 2rem;
+}
+.navbar{
+  background-color:#d5e8f4;
+}
+.fixed-navbar {
+ 
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; 
+}
+.btn-m{
+  background: none;
+  border: none;
+}
