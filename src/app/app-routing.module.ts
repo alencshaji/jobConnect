@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 import { UserComponent } from './user/user.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { SingleViewComponent } from './user/single-view/single-view.component';
@@ -15,10 +13,14 @@ import { MoreListComponent } from './user/more-list/more-list.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminUserMngComponent } from './admin/admin-user-mng/admin-user-mng.component';
 import { AdminCompMngComponent } from './admin/admin-comp-mng/admin-comp-mng.component';
+import { LoginSignupUserComponent } from './login-signup-user/login-signup-user.component';
+import { LoginSignupCompComponent } from './login-signup-comp/login-signup-comp.component';
+import { SignupUserComponent } from './signup-user/signup-user.component';
 
 const routes: Routes = [
-  {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent},
+  {path:"user/login",component:LoginSignupUserComponent},
+ {path:"user/signup",component:SignupUserComponent},
+  {path:"company/login-signup",component:LoginSignupCompComponent},
   { path: '', redirectTo: 'user', pathMatch: 'full' },
   {path:'user',component:UserComponent,children:[
     { path: '', redirectTo: 'user-home', pathMatch: 'full' },

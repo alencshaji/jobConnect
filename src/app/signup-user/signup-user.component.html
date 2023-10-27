@@ -1,0 +1,96 @@
+<div class="main">
+    <div class="container mt-5">
+        <form [formGroup]="signUpForm" (ngSubmit)="userSignup()">
+            <div class="row jumbotron box8">
+                <div class="col-sm-12 ">
+                    <h2 class="text-center text-info">User Register</h2>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="name-f">First Name</label>
+                    <input type="text" formControlName="fname"  class="form-control" name="fname" id="name-f"
+                        placeholder="Enter your first name." required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="name-l">Last name</label>
+                    <input type="text" formControlName="lname" class="form-control" name="lname" id="name-l" placeholder="Enter your last name."
+                        required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" formControlName="email" name="email" id="email" placeholder="Enter your email."
+                        required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" formControlName="uname" name="username" id="username" placeholder="username"
+                        required>
+                </div>
+                <!-- <div class="col-sm-6 form-group">
+                    <label for="resume">Resume</label>
+                    <input type="address" class="form-control" name="resume" id="resume" placeholder="Resume" required>
+                </div> -->
+                <div class="col-sm-6 form-group">
+                    <label for="State">State</label>
+                    <input type="state" formControlName="state" class="form-control" name="State" id="State"
+                        placeholder="Enter your state name." required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="Country">Country</label>
+                    <input type="text" class="form-control" formControlName="country" name="country" id="country" placeholder="Country" required>
+
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="Date">Date Of Birth</label>
+                    <input type="Date" name="dob" class="form-control" formControlName="dob" id="Date" placeholder="" required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="sex">Gender</label>
+                    <select id="sex" formControlName="gender" (change)="updateSelectedGender()" class="form-control browser-default custom-select">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Unspecified">Unspecified</option>
+                    </select>
+                </div>
+                <div class="col-sm-2 form-group">
+                    <label for="cod">Country code</label>
+                    <select id="country" formControlName="country" (change)="updateCountry()" class="form-control browser-default custom-select">
+                        <option value="India">India</option>
+                    </select>
+
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="tel">Phone</label>
+                    <input type="tel" name="phone" formControlName="ph" class="form-control" id="tel"
+                        placeholder="Enter Your Contact Number." required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="pass">Password</label>
+                    <input type="Password" name="password" formControlName="psw" class="form-control" id="pass"
+                        placeholder="Enter your password." required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="category">Job Category</label>
+                    <select id="category" formControlName="category" (change)="updateSelectedCategory()" class="form-control browser-default custom-select">
+                        <option value="Healthcare & Medical">Healthcare & Medical </option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Education">Education</option>
+                        <option value="Finance & Banking">Finance & Banking</option>
+                        <option value="Engeering">Engeering</option>
+                        <option value="Sales & Marketing">Sales & Marketing</option>
+                        <option value="Retail & Hospitality">Retail & Hospitality</option>
+                        <option value="Manufacturing & Production">Manufacturing & Production</option>
+                        <option value="Customer Service">Customer Service</option>
+                        <option value="Government & Public Service">Government & Public Service</option>
+                    </select>
+                </div>
+
+                <div class="text-center mt-4 col-sm-12 form-group mb-0">
+                    <button class="btn btn-primary float-right">Signup</button>
+                </div>
+                <div class="text-center mt-2 col-sm-12 form-group mb-0">
+                    <h5>Sign in As <a routerLink="/user/login">User</a> or <a routerLink="/company/login-signup">Company</a> </h5>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

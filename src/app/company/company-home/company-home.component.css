@@ -1,16 +1,29 @@
+
+* {
+    box-sizing: border-box;
+  }
+  .card{
+    background-color: rgb(245, 244, 244);
+    border: none;
+  }
+ 
 .main-content{
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
+
 }
 .content-card{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    align-items: center;
 }
 .btns-sec{
     display: flex;
     align-items: center;
+  justify-content: flex-end;
  
 }
 .btns-sec button{
@@ -29,3 +42,31 @@
 .view-btn{
     margin-top: 1rem;
 }
+.btn-add{
+    background-color: rgb(6, 154, 6);
+
+    color: aliceblue;
+}
+.btn-add:hover{
+    background-color: rgb(6, 135, 6);
+}
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+
+
+
+
+

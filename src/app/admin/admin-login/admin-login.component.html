@@ -3,16 +3,22 @@
     <div class="main  mt-10">
       <div class="my-form p-5 bg-dark">
         <h1>Admin Login</h1>
-        <form >
+        <form [formGroup]="adminForm">
           <div class="mb-3 mt-4">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1" class="form-label">Admin</label>
+            <input type="text" formControlName="auname" name="auname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div *ngIf="this.adminForm.get('auname')?.errors && this.adminForm.get('auname')?.touched">
+              <h6 class="error">Invalid data</h6>
+            </div>
           </div>
           <div class="mb-3 mt-4">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" formControlName="psw" class="form-control" id="exampleInputPassword1">
+            <input type="password" formControlName="apsw" name="apsw" class="form-control" id="exampleInputPassword1">
+              <div *ngIf="this.adminForm.get('apsw')?.errors && this.adminForm.get('apsw')?.touched">
+                <h6 class="error">Invalid Password</h6>
+              </div>
           </div>
-          <button type="submit" class="btn btn-light mt-3"(click)="loginAdmin()"    >LOGIN</button>
+          <button type="submit" class="btn btn-light mt-3"(click)="loginAdmin()">LOGIN</button>
         </form>
       </div>
     </div>

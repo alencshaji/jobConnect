@@ -6,6 +6,8 @@ import { CompanyHomeComponent } from './company-home/company-home.component';
 import { CompanyAddComponent } from './company-add/company-add.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class CompanyModule { }

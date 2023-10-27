@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.showFooter = event.url.includes('/login') || event.url.includes('/signup') || event.url.includes('/admin')
-        ||event.url.includes('/company/company-home');
+        this.showFooter = event.url.includes('/user/signup') || event.url.includes('/user/login')||event.url.includes('company/login-signup') || event.url.includes('/admin')
+        ||event.url.includes('/company');
       }
     });
   }

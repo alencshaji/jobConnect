@@ -6,6 +6,8 @@ import { MaterialModule } from '../material/material.module';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminUserMngComponent } from './admin-user-mng/admin-user-mng.component';
 import { AdminCompMngComponent } from './admin-comp-mng/admin-comp-mng.component';
+import {AdminLoginComponent} from './admin-login/admin-login.component'
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -13,6 +15,7 @@ import { AdminCompMngComponent } from './admin-comp-mng/admin-comp-mng.component
 
 @NgModule({
   declarations: [
+    AdminLoginComponent,
     AdminComponent,
     AdminHomeComponent,
     AdminUserMngComponent,
@@ -24,6 +27,8 @@ import { AdminCompMngComponent } from './admin-comp-mng/admin-comp-mng.component
     CommonModule,
     RouterModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ]
 })
