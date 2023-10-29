@@ -1,0 +1,36 @@
+.company-head {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .company-head h1 {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  
+  .cards-comp {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .cards-comp .card {
+    margin-top: 0.5rem;
+  }
+  
+  .cards-comp .card img {
+    height: 10rem;
+    width: 100%;
+  }
+  
+  .content-card {
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn-apply {
+    border: 1px solid black;
+  }
+  .btn-view{
+    border: 1px solid black;
+    margin-right: .2rem;
+  }

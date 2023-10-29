@@ -14,6 +14,7 @@ export class CompanyAddComponent {
   selectedExp: any = ''
   selectedCountry: any = ''
   cid: any = ''
+  companyname: any = ''
   jobForm = this.fb.group({
     jobTitle: ['', [Validators.required]],
     expirence: ['', [Validators.required]],
@@ -32,6 +33,7 @@ export class CompanyAddComponent {
 
   addJob() {
     if (this.jobForm.valid) {
+      this.companyname = localStorage.getItem("company")
       const path = this.jobForm.value
       const body = {
         title: path.jobTitle,
@@ -42,7 +44,8 @@ export class CompanyAddComponent {
         state: path.state,
         jobtype: path.jobType,
         expirence: path.expirence,
-        cid: this.companyid
+        cid: this.companyid,
+        cname: this.companyname
 
       }
       console.log(body);

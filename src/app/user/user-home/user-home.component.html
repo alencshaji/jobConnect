@@ -63,34 +63,47 @@
                 </button>
             </div>
         </div>
-       
+
         <div class="job-head">
             <h1>Top Picks For You ->></h1>
         </div>
         <div class="cards">
-            <div class="card mt-3 w-95">
+            <div class="card mt-2 p-2" *ngFor="let i of pdata">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary float-end">Button</a>
+                    <div class="saved">
+                        <h5 class="card-title">{{i.cname}}</h5>
+                        <h3>
+                            <button class="btn star-saved" matTooltip="Save Job">
+                                <span class="material-icons ">
+                                    star_rate
+                                </span>
+                            </button>
+                        </h3>
+                    </div>
+
+                    <div class="content-card d-flex justify-content-between">
+                        <h4 class="card-title col-md-10 col-sm-6"><strong>{{i.title}}</strong></h4>
+
+                        <div class="col-md-2 col-sm-6 text-right">
+                            <button class="btn btn-view" data-bs-target="#exampleModal" (click)="view(i._id)"
+                                data-bs-toggle="modal">View</button>
+                            <button class="btn btn-apply" (click)="applyLink(i.cid,i._id)">Apply</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card d-flex mt-2 mb-2">
+                        <div class="cardtext col-md-11">
+                            <p><span>{{i.state}},{{i.location}}</span> </p>
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
-            <div class="card mt-3 w-95">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary float-end">Button</a>
-                </div>
-            </div>
-            <div class="card mt-3 w-95">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary float-end">Button</a>
-                </div>
-            </div>
+
         </div>
-        <button class="  btn-more float-end"routerLink="/user/more-list">More Listing</button>
+        <button class="  btn-more float-end" routerLink="/user/more-list">More Listing</button>
     </div>
 
 </div>
@@ -107,31 +120,64 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
-                        <img src="https://www.investopedia.com/thmb/4mQYo6Nbw4WfmN3CN1Q99-QEhd8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shutterstock_227705986_google_android_robot-5bfc3afbc9e77c00587b1dcf.jpg" class="card-img-top" 
-                            alt="Google" />
+                        <img src="https://www.investopedia.com/thmb/4mQYo6Nbw4WfmN3CN1Q99-QEhd8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shutterstock_227705986_google_android_robot-5bfc3afbc9e77c00587b1dcf.jpg"
+                            class="card-img-top" alt="Google" />
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
-                        <img src="https://i.postimg.cc/zGSPs9VJ/Apple.jpg" class="card-img-top"
-                            alt="Apple" />
+                        <img src="https://i.postimg.cc/zGSPs9VJ/Apple.jpg" class="card-img-top" alt="Apple" />
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
-                        <img src="https://i.postimg.cc/ry0ZVdKZ/ms.jpg" class="card-img-top"
-                            alt="microsoft" />
+                        <img src="https://i.postimg.cc/ry0ZVdKZ/ms.jpg" class="card-img-top" alt="microsoft" />
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
-                        <img src="https://i.postimg.cc/zGj0tKcv/amazon.jpg" class="card-img-top"
-                            alt="amazon" />
+                        <img src="https://i.postimg.cc/zGj0tKcv/amazon.jpg" class="card-img-top" alt="amazon" />
                     </div>
                 </div>
 
             </div>
         </div>
 
+    </div>
+</div>
+<button class="scroll-to-top" (click)="scrollToTop()">
+    <i class="fa fa-solid fa-angle-up"></i>
+</button>
+<!-- Modal -->
+<div class="modal fade modal-cont" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h3 class="modal-title" id="exampleModalLabel">
+                    {{singleView.cname}}
+                </h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="role ">
+                    <p>Job role : {{singleView.role}}</p>
+                </div>
+                <div class="head-modal flex-prop">
+                    <h4>Position : {{ singleView.title }}</h4>
+                    <h4>Experience : {{singleView.expirence}}</h4>
+                </div>
+                <div class="bodytext flex-prop">
+                    <h4>Job Type : {{singleView.jobtype}}</h4>
+                    <h4>Salary : {{singleView.salary}}</h4>
+
+                </div>
+                <h5 class="text-botom">Location : {{singleView.location}}</h5>
+            </div>
+            <div class="modal-footer border-top-0 d-flex">
+                <button type="button" class="btn btn-primary" (click)="applyLink(singleView.cid,singleView._id)">Apply</button>
+            </div>
+        </div>
     </div>
 </div>

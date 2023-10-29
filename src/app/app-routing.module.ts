@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
-import { SingleViewComponent } from './user/single-view/single-view.component';
 import { CompanyComponent } from './company/company.component';
 import { CompanyAddComponent } from './company/company-add/company-add.component';
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
@@ -16,6 +15,7 @@ import { AdminCompMngComponent } from './admin/admin-comp-mng/admin-comp-mng.com
 import { LoginSignupUserComponent } from './login-signup-user/login-signup-user.component';
 import { LoginSignupCompComponent } from './login-signup-comp/login-signup-comp.component';
 import { SignupUserComponent } from './signup-user/signup-user.component';
+import { SavedJobComponent } from './user/saved-job/saved-job.component';
 
 const routes: Routes = [
   {path:"user/login",component:LoginSignupUserComponent},
@@ -25,14 +25,14 @@ const routes: Routes = [
   {path:'user',component:UserComponent,children:[
     { path: '', redirectTo: 'user-home', pathMatch: 'full' },
     {path:'user-home',component:UserHomeComponent},
-    {path:'single-view',component:SingleViewComponent},
-    {path:'more-list',component:MoreListComponent}
+    {path:'more-list',component:MoreListComponent},
+    {path:'saved-job',component:SavedJobComponent}
   ]},
   {path:"company",component:CompanyComponent,children:[
     { path: '', redirectTo: 'company-home', pathMatch: 'full' },
     {path:'company-home',component:CompanyHomeComponent},
     {path:'add-job',component:CompanyAddComponent},
-    {path:'edit-job',component:CompanyEditComponent},
+    {path:'edit-job/:id',component:CompanyEditComponent},
    
   ]},
   {path:"admin",component:AdminComponent,children:[

@@ -1,6 +1,7 @@
+/* Default styles */
 .ban_sec {
   margin-top: 2rem;
-  padding-top: .2rem;
+  padding-top: 0.2rem;
   width: 100%;
 }
 
@@ -18,41 +19,33 @@
   position: absolute;
   top: 50%;
   left: 6%;
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
 .ban_text strong {
-  font: 800 62.22px/70px "Montserrat", sans-serif;
+  font: 800 40px/48px "Montserrat", sans-serif;
   color: #fff;
   text-transform: uppercase;
 }
 
 .ban_text strong span {
-  font: 400 44.44px/52px "Montserrat", sans-serif;
-  letter-spacing: 3px;
+  font: 400 28px/34px "Montserrat", sans-serif;
+  letter-spacing: 2px;
 }
 
 .ban_text p {
-  font: 400 25px/30px "Montserrat", sans-serif;
+  font: 400 20px/24px "Montserrat", sans-serif;
   color: #fff;
-  margin: 7px 0 25px;
+  margin: 7px 0 15px;
 }
 
 .ban_text a {
   display: inline-block;
-  font: 800 19.39px/24px "Montserrat", sans-serif;
+  font: 800 16px/20px "Montserrat", sans-serif;
   background: #282828;
-  border-radius: 26px;
+  border-radius: 20px;
   color: #fff;
-  padding: 12px 28px;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
+  padding: 10px 24px;
   transition: all 0.3s ease-in-out;
   text-decoration: none;
 }
@@ -61,10 +54,7 @@
   background: #50af47;
 }
 
-/*sec-2*/
-mat-chip-option {
-  margin-top: .2rem;
-}
+/* Section 2 styles */
 
 .sec-2 {
   margin-top: 2rem;
@@ -85,11 +75,10 @@ mat-chip-option {
 }
 
 .job-head {
-  margin: 2rem 0rem 2rem 0rem;
+  margin: 2rem 0 2rem;
 }
 
 .btn-more {
-
   display: inline-block;
   outline: 0;
   border: 0;
@@ -99,30 +88,39 @@ mat-chip-option {
   border-radius: 4px;
   font-size: 14px;
   height: 30px;
-  padding: 0px 15px;
-  text-shadow: rgb(0 0 0 / 25%) 0px 3px 8px;
-  background: linear-gradient(92.88deg, rgb(69, 94, 181) 9.16%, rgb(86, 67, 204) 43.89%, rgb(103, 63, 215) 64.72%);
-  transition: all 0.5s ease 0s;
+  padding: 0 15px;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(92.88deg, #455eb5 9.16%, #5635cc 43.89%, #673fd7 64.72%);
+  transition: all 0.5s ease;
   margin-top: 1rem;
-
 }
 
 .btn-more:hover {
-  box-shadow: rgb(80 63 205 / 50%) 0px 1px 40px;
-  transition: all 0.1s ease 0s;
+  box-shadow: 0 1px 40px rgba(80, 63, 205, 0.5);
+  transition: all 0.1s ease;
 }
 
+.mat-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.2rem;
+}
+
+.mat-chip {
+  margin: 0.2rem;
+  background-color: #e0e0e0;
+}
+
+/* Section 3 styles */
 
 .sec-3 {
   margin-top: 6rem;
   margin-bottom: 6rem;
-
 }
 
 .company-head {
   text-align: center;
   margin-bottom: 2rem;
-
 }
 
 .company-head h1 {
@@ -133,97 +131,147 @@ mat-chip-option {
 .cards-comp {
   display: flex;
   flex-wrap: wrap;
-
 }
-.cards-comp .card{
-  margin-top: .5rem;
+
+.cards-comp .card {
+  margin-top: 0.5rem;
 }
 
 .cards-comp .card img {
   height: 10rem;
-  
   width: 100%;
 }
 
-
-
-
-
-
-/* media queery */
-
-@media (min-width: 1200px) and (max-width: 1399px) {
-  .ban_text p {
-    font-size: 21px;
-  }
+.content-card {
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-  .ban_text p {
-    font-size: 17px;
-  }
+.btn-apply {
+  border: 1px solid black;
+}
+.btn-view{
+  border: 1px solid black;
+  margin-right: .2rem;
+}
+/* modal */
+.flex-prop{
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+.text-botom{
+  display: flex;
+  justify-content: end;
+}
+.modal-content::before {
+  content: "";
+  background: url("https://i.postimg.cc/NjDC8P9R/1-2-jobs-png-file.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 20%; 
+  z-index: -1;
+}
 
+.modal-content {
+  position: relative;
+ padding: 3rem;
+  z-index: 1; 
+}
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999; 
+  background-color: #ec6212;
+  color: #fff; 
+  padding: .5rem 1rem;
+  border: none;
+  border-radius:5rem;
+  cursor: pointer;
+  font-weight: bold;
+  display: block; 
+}
+
+.scroll-to-top:hover {
+  background-color: #cf390b; 
+}
+
+.saved{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.star-saved{
+ color: rgb(218, 218, 36);
+}
+.star-saved:hover{
+  cursor: pointer;
+  color: rgb(181, 181, 41);
+}
+.modal-footer{
+  justify-content: flex-end;
+}
+/* Media queries for responsiveness */
+
+
+@media (max-width: 767px) {
   .ban_text strong {
-    font-size: 50px;
-    line-height: 60px;
+    font-size: 30px;
   }
 
   .ban_text strong span {
-    font-size: 37px;
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  .ban_text p {
+    font-size: 16px;
   }
 
   .ban_text a {
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 14px;
+    padding: 8px 20px;
   }
+  
+  .cards-comp .card img {
+    height: 8rem;
+  }
+  
+
 }
 
-@media only screen and (max-width: 991px) {
+/* For screens up to 575px width (e.g., smartphones) */
+@media (max-width: 575px) {
   .ban_text strong {
-    font-size: 35px;
-    line-height: 40px;
+    font-size: 26px;
+    padding: 10px 0;
   }
-
   .ban_text strong span {
-    font-size: 28px;
-    line-height: 35px;
+    font-size: 20px;
     letter-spacing: 2px;
   }
 
   .ban_text p {
     font-size: 14px;
-    line-height: 20px;
   }
-
   .ban_text a {
-    font-size: 13.39px;
-    line-height: 15px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .ban_img img {
-    min-height: 290px;
-    object-fit: cover;
-  }
-}
-
-@media only screen and (max-width: 575px) {
-  .ban_text strong {
-    padding: 10px;
-    width: 100%;
-    display: block;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .ban_text strong span {
-    font-size: 22px;
-    line-height: 31px;
-    letter-spacing: 1px;
+    font-size: 12px;
+    padding: 8px 16px;
   }
 
-  .ban_text {
-    left: 2%;
+  .btn-more {
+    font-size: 12px;
   }
+  
+  .cards-comp .card img {
+    height: 6rem;
+  }
+  
+ 
 }

@@ -1,16 +1,16 @@
 <div class="main">
     <nav class="actions-menu container">
-        <a href="#" class="iconss">
+        <a class="iconss" (click)="savedJob()">
             <i class="fa fa-solid fa-bookmark"></i>
             <span>Saved Jobs</span>
         </a>
-        <a href="#" class="iconss">
+        <a  class="iconss">
             <i class="fa fa-solid fa-suitcase"></i>
-         <span>Applied Jobs</span>
+            <span>Applied Jobs</span>
         </a>
-        <a href="#" class="iconss">
+        <a  class="iconss">
             <i class="fa fa-solid fa-bell"></i>
-           <span>Job Alerts</span> 
+            <span>Job Alerts</span>
         </a>
     </nav>
     <div class="main-content">
@@ -22,108 +22,68 @@
                 <button class="search__btn">Search</button>
             </form>
         </div>
-        
+
         <div class="listings container">
-            <h3 class="listings__heading">Based on your profile</h3>
+            <h3 class="listings__heading">More Jobs</h3>
             <ul class="listings__grid">
-                <li class="card">
-                    <img src="https://logo.clearbit.com/google.com" alt="" class="card__logo" />
-                    <div class="card__heading">Software Engineer</div>
-                    <div class="card__text">Google</div>
-                    <div class="card__text">Hyderabad, IN</div>
-                    <div class="card__text card__text--small">9 connections</div>
+                <li class="card" *ngFor="let i of pdata">
+                    <div class="more">
+                        <img src="https://logo.clearbit.com/google.com" alt="" class="card__logo" />
+                        <button class="btn star-saved"  matTooltip="Save Job">
+                            <span class="material-icons ">
+                                star_rate
+                                </span>
+                        </button>
+                    </div>
+                   
+                    <div class="card__heading">{{i.title}}</div>
+                    <div class="card__text">{{i.cname}}</div>
+                    <div class="card__text">{{i.state}},{{i.location}}</div>
                     <hr class="card__separator" />
                     <div class="card__text card__text--small">6 days ago</div>
-                    <!-- <button class="job-card-menu-btn">···</button> -->
-                </li>
-                <li class="card">
-                    <img src="https://logo.clearbit.com/amazon.com" alt="" class="card__logo" />
-                    <div class="card__heading">Senior Software Engineer</div>
-                    <div class="card__text">Amazon</div>
-                    <div class="card__text">Hyderabad, IN</div>
-                    <div class="card__text card__text--small">9 connections</div>
-                    <hr class="card__separator" />
-                    <div class="card__text card__text--small">6 days ago</div>
-                    <!-- <button class="job-card-menu-btn">···</button> -->
-                </li>
-                <li class="card">
-                    <img src="https://logo.clearbit.com/tcs.com" alt="" class="card__logo" />
-                    <div class="card__heading">Web Developer</div>
-                    <div class="card__text">TCS</div>
-                    <div class="card__text">Bangalore, IN</div>
-                    <div class="card__text card__text--small">9 connections</div>
-                    <hr class="card__separator" />
-                    <div class="card__text card__text--small">6 days ago</div>
-                    <!-- <button class="job-card-menu-btn">···</button> -->
-                </li>
-                <li class="card">
-                    <img src="https://images.ctfassets.net/37l920h5or7f/4DoCMtDHIs8WMMyu06eYM2/c6d3263dce37657cbdd44224f1f79a0d/Uber-Asset-Logo-18.jpg?fm=jpg&q=70&w=1600"
-                        alt="" class="card__logo" />
-                    <div class="card__heading">Software Engineer</div>
-                    <div class="card__text">Uber</div>
-                    <div class="card__text">Delhi, IN</div>
-                    <div class="card__text card__text--small">9 connections</div>
-                    <hr class="card__separator" />
-                    <div class="card__text card__text--small">6 days ago</div>
-                    <!-- <button class="job-card-menu-btn">···</button> -->
-                </li>
-                <li class="card">
-                    <img src="https://via.placeholder.com/64" alt="" class="card__logo" />
-                    <div class="card__heading">Software Engineer</div>
-                    <div class="card__text">Microsoft</div>
-                    <div class="card__text">Hyderabad, IN</div>
-                    <div class="card__text card__text--small">9 connections</div>
-                    <hr class="card__separator" />
-                    <div class="card__text card__text--small">6 days ago</div>
-                    <!-- <button class="job-card-menu-btn">···</button> -->
-                </li>
-                <li class="card">
-                    <img src="https://via.placeholder.com/64" alt="" class="card__logo" />
-                    <div class="card__heading">Software Engineer</div>
-                    <div class="card__text">AMD</div>
-                    <div class="card__text">Hyderabad, IN</div>
-                    <div class="card__text card__text--small">9 connections</div>
-                    <hr class="card__separator" />
-                    <div class="card__text card__text--small">6 days ago</div>
-                    <!-- <button class="job-card-menu-btn">···</button> -->
-                </li>
-                <li class="card">
-                    <img src="https://via.placeholder.com/64" alt="" class="card__logo" />
-                    <div class="card__heading">Software Engineer</div>
-                    <div class="card__text">Microsoft</div>
-                    <div class="card__text">Hyderabad, IN</div>
-                    <div class="card__text card__text--small">9 connections</div>
-                    <hr class="card__separator" />
-                    <div class="card__text card__text--small">6 days ago</div>
-                    <!-- <button class="job-card-menu-btn">···</button> -->
-                </li>
-                <li class="card">
-                    <img src="https://via.placeholder.com/64" alt="" class="card__logo" />
-                    <div class="card__heading">Software Engineer</div>
-                    <div class="card__text">Microsoft</div>
-                    <div class="card__text">Hyderabad, IN</div>
-                    <div class="card__text card__text--small">9 connections</div>
-                    <hr class="card__separator" />
-                    <div class="card__text card__text--small">6 days ago</div>
-                    <!--       <button class="job-card-menu-btn">···</button> -->
-                </li>
-                <li class="card">
-                    <img src="https://via.placeholder.com/64" alt="" class="card__logo" />
-                    <div class="card__heading">Software Engineer</div>
-                    <div class="card__text">Microsoft</div>
-                    <div class="card__text">Hyderabad, IN</div>
-                    <div class="card__text card__text--small">9 connections</div>
-                    <hr class="card__separator" />
-                    <div class="card__text card__text--small">6 days ago</div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button class="btn btn-apply" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="view(i._id)"  >Apply</button>
+                    </div>
                 </li>
             </ul>
         </div>
+        
     </div>
     <button class="scroll-to-top" (click)="scrollToTop()">
         <i class="fa fa-solid fa-angle-up"></i>
-       
     </button>
 
+    <!-- Pagination controls -->
+    
 </div>
-
-
+<div class="modal fade modal-conten " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h3 class="modal-title" id="exampleModalLabel">
+                    {{singleView.cname}}
+                </h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="role ">
+                    <p>Job role : {{singleView.role}}</p>
+                </div>
+                <div class="head-modal flex-prop" >
+                    <h4>Position : {{ singleView.title }}</h4>
+                    <h4>Experience : {{singleView.expirence}}</h4>
+                </div>
+                <div class="bodytext flex-prop">
+                    <h4>Job Type : {{singleView.jobtype}}</h4>
+                    <h4>Salary : {{singleView.salary}}</h4>
+                    
+                </div>
+                <h5 class="text-botom">Location : {{singleView.location}}</h5>
+            </div>
+            <div class="modal-footer border-top-0 d-flex">
+                <button type="button" class="btn btn-apply-modal"  (click)="applyLink()">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>

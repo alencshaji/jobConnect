@@ -5,11 +5,25 @@
   padding: 0;
   box-sizing: border-box;
 }
-.main{
-    margin-top: 5rem;
-    margin-bottom: 3rem;
+.more{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
+.star-saved{
+  color: rgb(218, 218, 36);
+ }
+ .star-saved:hover{
+   cursor: pointer;
+   color: rgb(181, 181, 41);
+ }
+.main {
+  padding-top: 5rem;
+  margin-bottom: 3rem;
+}
+.modal-footer{
+  justify-content: flex-end;
+}
 :root {
   --body-background: #f1f1f1;
   --nav-bg: #283e4a;
@@ -38,12 +52,10 @@ a:hover {
 
 ul {
   list-style: none;
-} 
-
-
-body {
-  background-color: #f1f1f1;
 }
+
+
+
 
 .container {
   max-width: 1120px;
@@ -89,13 +101,16 @@ body {
 .actions-menu a:first-of-type {
   padding-left: 0px;
 }
-.iconss{
-    display: flex;
-    align-items: center;
+
+.iconss {
+  display: flex;
+  align-items: center;
 }
-.iconss i{
-    margin-right:.3rem;
+
+.iconss i {
+  margin-right: .3rem;
 }
+
 .search {
   margin: 16px auto;
   padding: 16px 64px 24px 64px;
@@ -155,11 +170,27 @@ body {
 }
 
 .card {
-background-color: white;
-padding: 16px;
-border: solid 1px #ccc;
-max-width: 260px;
-border-radius: 2px;
+  background-color: white;
+  padding: 16px;
+  border: solid 1px #ccc;
+  max-width: 260px;
+  border-radius: 2px;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.btn-apply {
+  margin-top: 1rem;
+  border: black 1px solid;
+  padding: .5rem;
+  width: 100%;
+}
+
+.btn-apply:hover {
+  background-color: rgb(57, 152, 57);
+  color: #fff9f9;
 }
 
 .card__logo {
@@ -197,21 +228,61 @@ border-radius: 2px;
 
 
 .scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999; 
-    background-color: #ec6212;
-    color: #fff; 
-    padding: .5rem 1rem;
-    border: none;
-    border-radius:5rem;
-    cursor: pointer;
-    font-weight: bold;
-    display: block; 
-  }
-  
-  .scroll-to-top:hover {
-    background-color: #cf390b; 
-  }
-  
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: #ec6212;
+  color: #fff;
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 5rem;
+  cursor: pointer;
+  font-weight: bold;
+  display: block;
+}
+
+.scroll-to-top:hover {
+  background-color: #cf390b;
+}
+
+
+
+
+/* modal */
+.flex-prop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-botom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-content::before {
+  content: "";
+  background: url("https://i.postimg.cc/NjDC8P9R/1-2-jobs-png-file.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 12%;
+  z-index: -1;
+}
+
+.modal-content {
+  position: relative;
+  padding: 3rem;
+  z-index: 1;
+}
+
+.btn-apply-modal {
+  padding: .5rem;
+  background-color: rgb(87, 168, 87);
+  color: #ecf2f4;
+}

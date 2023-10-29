@@ -8,7 +8,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   declarations: [],
   imports: [
@@ -22,7 +22,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatSliderModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule { }

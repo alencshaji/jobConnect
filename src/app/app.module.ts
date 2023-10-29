@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginSignupCompComponent } from './login-signup-comp/login-signup-comp.component';
 import { LoginSignupUserComponent } from './login-signup-user/login-signup-user.component';
 import { SignupUserComponent } from './signup-user/signup-user.component';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 
@@ -38,7 +39,8 @@ import { SignupUserComponent } from './signup-user/signup-user.component';
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

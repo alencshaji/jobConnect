@@ -9,12 +9,12 @@ import { DataServiceService } from 'src/app/data-service/data-service.service';
   styleUrls: ['./company-home.component.css']
 })
 export class CompanyHomeComponent implements OnInit {
-  cname:any=''
+  cname: any = ''
   cid: any = ''
   pdata: any = []
   adata: any = []
   ngOnInit(): void {
-    this.cname=localStorage.getItem("company")
+    this.cname = localStorage.getItem("company")
     this.cid = localStorage.getItem("cid")
     this.allJObs()
   }
@@ -25,10 +25,7 @@ export class CompanyHomeComponent implements OnInit {
       next: (result: any) => {
         this.adata = result.message
         this.pdata = this.adata.filter((job: any) => job.cid === this.cid)
-
-
         console.log(this.pdata);
-
       },
       error: (result: any) => {
         alert(result)
@@ -37,7 +34,19 @@ export class CompanyHomeComponent implements OnInit {
   }
 
   addPost() {
-
     this.route.navigateByUrl("/company/add-job")
+  }
+  deletePost(jId: any) {
+
+    const confirmed = confirm("Are you sure you want to delete this Post?")
+    if(confirmed){
+      this.db.deleteJob(jId).subscribe({
+        next:(result:any)=>{
+          alert("Removed Job Posted")
+          this.allJObs()
+        }
+      })
+    }
+    
   }
 }
