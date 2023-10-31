@@ -71,13 +71,16 @@
             <div class="card mt-2 p-2" *ngFor="let i of pdata">
                 <div class="card-body">
                     <div class="saved">
-                        <h5 class="card-title">{{i.cname}}</h5>
+                        <div class="main-img">
+                            <img src="https://logo.clearbit.com/google.com" alt="" class="card__logo">
+                            <h5 class="card-title">{{i.cname}}</h5>
+                        </div>
                         <h3>
-                            <button class="btn star-saved" matTooltip="Save Job">
-                                <span class="material-icons ">
-                                    star_rate
+                            <a class=" star-saved" (click)="savedJobs(i._id)" matTooltip="Save Job">
+                                <span class="material-icons" [ngClass]="starClr? 's1' : 's2'">
+                                  star_rate
                                 </span>
-                            </button>
+                              </a>
                         </h3>
                     </div>
 

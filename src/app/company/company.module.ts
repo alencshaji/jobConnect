@@ -8,6 +8,7 @@ import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CompanyViewApplicantsComponent } from './company-view-applicants/company-view-applicants.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     CompanyComponent,
     CompanyAddComponent,
     CompanyEditComponent,
-    CompanyHomeComponent
+    CompanyHomeComponent,
+    CompanyViewApplicantsComponent
 
   ],
   imports: [

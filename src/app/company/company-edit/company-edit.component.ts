@@ -14,6 +14,7 @@ export class CompanyEditComponent implements OnInit {
   selectedCountry: any = ''
   jData: any = ''
   jId: any = ''
+  cname: any = ''
   editForm = this.fb.group({
     jobTitle: ['', [Validators.required]],
     expirence: ['', [Validators.required]],
@@ -29,6 +30,8 @@ export class CompanyEditComponent implements OnInit {
       this.jId = data.id
     })
     this.detailsJob()
+   
+    this.cname =localStorage.getItem("company")
   }
   constructor(private fb: FormBuilder, private db: DataServiceService,private route:Router, private ar: ActivatedRoute) { }
 

@@ -11,8 +11,13 @@ export class UserHomeComponent implements OnInit {
   pdata: any = []
   uid: any = []
   singleView: any = []
+  savedData: any = []
+  sData:any=[]
+  starClr:any
+
   ngOnInit(): void {
     this.allJobs()
+    this.savedJobLists()
     this.scrollToTop()
   }
 
@@ -21,7 +26,6 @@ export class UserHomeComponent implements OnInit {
     this.db.allJObs().subscribe({
       next: (result: any) => {
         this.pdata = result.message
-        console.log(this.pdata);
 
       },
       error: (result: any) => {
@@ -39,26 +43,55 @@ export class UserHomeComponent implements OnInit {
         uid: this.uid
       }
 
-      this.db.appliedJob(body).subscribe({
+      this.db.applyJob(body).subscribe({
         next: (res: any) => {
-          alert(res.message)
+          if (res.status === false) {
+            this.showAppliedAlert(res.message)
+          } else {
+            this.showSuccessAlert(res.message)
+          }
         },
-        error: (error: any) => {
-          alert(error.message)
+        error: (result: any) => {
+          alert(result.message)
         }
       })
-
-      // this.showSuccessAlert()
-
     } else {
-
+      this.showLoginAlert()
     }
   }
-
-  showSuccessAlert() {
+  savedJobs(jid: any) {
+    this.starClr=false;
+    if (localStorage.getItem("user")) {
+      this.uid = localStorage.getItem("user")
+      this.db.savedJobs(this.uid,jid).subscribe({
+        next: (result: any) => {
+          this.savedData = result.message
+          alert(result.message)
+        },
+        error: (result: any) => {
+          alert(result.message)
+        }
+      })
+    }
+  }
+  showLoginAlert() {
     Swal.fire({
-      title: "Applied Successfully!",
+      title: "Please Login !",
+      icon: "warning",
+      confirmButtonText: "Close"
+    });
+  }
+  showSuccessAlert(d: any) {
+    Swal.fire({
+      title: d,
       icon: "success",
+      confirmButtonText: "Close"
+    });
+  }
+  showAppliedAlert(d: any) {
+    Swal.fire({
+      title: d,
+      icon: "info",
       confirmButtonText: "Close"
     });
   }
@@ -66,12 +99,31 @@ export class UserHomeComponent implements OnInit {
     this.db.getOneJob(id).subscribe({
       next: (result: any) => {
         this.singleView = result.message
-        console.log(this.singleView);
 
       }, error: (result: any) => {
         alert(result)
       }
     })
+  }
+  // toggleStarClicked(jobId: string) {
+  //   this.starClicked[jobId] = !this.starClicked[jobId];
+  // }
+  savedJobLists() {
+    this.uid = localStorage.getItem("user")
+    this.db.savedJobList(this.uid).subscribe({
+      next: (result: any) => {
+        this.sData = result.message
+        if(this.sData._id){
+          this.starClr = true
+        }else{
+          this.starClr = false
+        }
+      },
+      error: (result: any) => {
+        alert(result.message)
+      }
+    })
+
   }
 
   scrollToTop() {

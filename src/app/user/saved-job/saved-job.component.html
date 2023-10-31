@@ -1,43 +1,68 @@
-<div class="main">
-    <div class="caontainer">
-        <div class="job-head">
-            <h1>Top Picks For You ->></h1>
+<div class="sec">
+    <div class="container">
+        <div class="row">
+            <div class="head-text">
+                <h1>Saved jobs >>></h1>
+                <button class="btn" (click)="deleteSaved()" matTooltip="Delete All"><span class="material-symbols-outlined">
+                        delete
+                    </span></button>
+            </div>
+            <h2 class="text-center error-text mb-5 mt-5" *ngIf="sData.length === 0">{{msge}}</h2>
+            <div class="col-sm-6 mb-3 mb-sm-0" *ngFor="let i of sData">
+                <div class="card mb-3 p-3">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            
+                            <h5 class="card-title">{{i.cname}}</h5>
+                            <p class="card-text">{{i.title}}</p>
+                        </div>
+                        <div class="btns">
+                            <a  class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="view(i.jid)">Apply</a>
+                            <a matTooltip="Delete Job" class="btn-delete"><span class="material-symbols-outlined" (click)="deleteJobSaved(i._id)">
+                                delete
+                            </span></a>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+            
         </div>
-        <div class="cards">
-            <div class="card mt-2 p-2">
-                <div class="card-body">
-                    <div class="saved">
-                        <h5 class="card-title"></h5>
-                        <h3>
-                            <button class="btn star-saved" matTooltip="Save Job">
-                                <span class="material-icons ">
-                                    star_rate
-                                </span>
-                            </button>
-                        </h3>
-                    </div>
+    </div>
 
-                    <div class="content-card d-flex justify-content-between">
-                        <h4 class="card-title col-md-10 col-sm-6"><strong></strong></h4>
+</div>
 
-                        <div class="col-md-2 col-sm-6 text-right">
-                            <button class="btn btn-view" data-bs-target="#exampleModal"
-                                data-bs-toggle="modal">View</button>
-                            <button class="btn btn-apply">Apply</button>
-                        </div>
-                    </div>
-
-                    <div class="content-card d-flex mt-2 mb-2">
-                        <div class="cardtext col-md-11">
-                            <p><span></span> </p>
-                        </div>
-
-                    </div>
+<!-- modal -->
+<div class="modal fade modal-cont" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h3 class="modal-title" id="exampleModalLabel">
+                    {{singleView.cname}}
+                </h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="role ">
+                    <p>Job role : {{singleView.role}}</p>
+                </div>
+                <div class="head-modal flex-prop">
+                    <h4>Position : {{ singleView.title }}</h4>
+                    <h4>Experience : {{singleView.expirence}}</h4>
+                </div>
+                <div class="bodytext flex-prop">
+                    <h4>Job Type : {{singleView.jobtype}}</h4>
+                    <h4>Salary : {{singleView.salary}}</h4>
 
                 </div>
-
+                <h5 class="text-botom">Location : {{singleView.location}}</h5>
             </div>
-
+            <div class="modal-footer border-top-0 d-flex">
+                <button type="button" class="btn btn-primary"
+                    (click)="applyLink(singleView.cid,singleView._id)">Apply</button>
+            </div>
         </div>
     </div>
 </div>

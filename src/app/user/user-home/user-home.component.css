@@ -150,20 +150,24 @@
 .btn-apply {
   border: 1px solid black;
 }
-.btn-view{
+
+.btn-view {
   border: 1px solid black;
   margin-right: .2rem;
 }
+
 /* modal */
-.flex-prop{
+.flex-prop {
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.text-botom{
+
+.text-botom {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
+
 .modal-content::before {
   content: "";
   background: url("https://i.postimg.cc/NjDC8P9R/1-2-jobs-png-file.png");
@@ -174,49 +178,66 @@
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 20%; 
+  opacity: 20%;
   z-index: -1;
 }
 
 .modal-content {
   position: relative;
- padding: 3rem;
-  z-index: 1; 
+  padding: 3rem;
+  z-index: 1;
 }
+.card__logo {
+  border-radius: 2px;
+  height: 64px;
+  width: 64px;
+  margin: 4px 0;
+}
+.main-img{
+  display: flex;
+  align-items:flex-end;
+}
+
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 999; 
+  z-index: 999;
   background-color: #ec6212;
-  color: #fff; 
+  color: #fff;
   padding: .5rem 1rem;
   border: none;
-  border-radius:5rem;
+  border-radius: 5rem;
   cursor: pointer;
   font-weight: bold;
-  display: block; 
+  display: block;
 }
 
 .scroll-to-top:hover {
-  background-color: #cf390b; 
+  background-color: #cf390b;
 }
 
-.saved{
+.saved {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.star-saved{
- color: rgb(218, 218, 36);
+.s2 {
+  color: rgb(220, 220, 208);
 }
-.star-saved:hover{
+
+.s1 {
+  color: red;
+}
+
+.star-saved:hover {
   cursor: pointer;
-  color: rgb(181, 181, 41);
 }
-.modal-footer{
+
+.modal-footer {
   justify-content: flex-end;
 }
+
 /* Media queries for responsiveness */
 
 
@@ -238,11 +259,11 @@
     font-size: 14px;
     padding: 8px 20px;
   }
-  
+
   .cards-comp .card img {
     height: 8rem;
   }
-  
+
 
 }
 
@@ -252,6 +273,7 @@
     font-size: 26px;
     padding: 10px 0;
   }
+
   .ban_text strong span {
     font-size: 20px;
     letter-spacing: 2px;
@@ -260,6 +282,7 @@
   .ban_text p {
     font-size: 14px;
   }
+
   .ban_text a {
     font-size: 12px;
     padding: 8px 16px;
@@ -268,10 +291,10 @@
   .btn-more {
     font-size: 12px;
   }
-  
+
   .cards-comp .card img {
     height: 6rem;
   }
-  
- 
+
+
 }

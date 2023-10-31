@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/data-service/data-service.service';
@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './company-add.component.html',
   styleUrls: ['./company-add.component.css']
 })
-export class CompanyAddComponent {
+export class CompanyAddComponent implements OnInit {
   selectedCategory: any = ''
   selectedType: any = ''
   selectedExp: any = ''
@@ -27,13 +27,14 @@ export class CompanyAddComponent {
 
   })
   constructor(private fb: FormBuilder, private db: DataServiceService, private route: Router) { }
-
+  ngOnInit(): void {
+    this.companyname = localStorage.getItem("company")
+  }
   companyid = localStorage.getItem("cid")
 
 
   addJob() {
     if (this.jobForm.valid) {
-      this.companyname = localStorage.getItem("company")
       const path = this.jobForm.value
       const body = {
         title: path.jobTitle,

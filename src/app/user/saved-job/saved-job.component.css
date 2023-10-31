@@ -1,36 +1,85 @@
-.company-head {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .company-head h1 {
-    font-size: 2rem;
-    font-weight: 500;
-  }
-  
-  .cards-comp {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .cards-comp .card {
-    margin-top: 0.5rem;
-  }
-  
-  .cards-comp .card img {
-    height: 10rem;
-    width: 100%;
-  }
-  
-  .content-card {
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .btn-apply {
-    border: 1px solid black;
-  }
-  .btn-view{
-    border: 1px solid black;
-    margin-right: .2rem;
-  }
+.sec{
+  padding-top: 5rem;
+}
+.row{
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+.head-text{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.card-body{
+flex-wrap: wrap;
+}
+
+.flex-prop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-botom {
+  display: flex;
+  justify-content: flex-end;
+}
+.title-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content::before {
+  content: "";
+  background: url("https://i.postimg.cc/NjDC8P9R/1-2-jobs-png-file.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 12%;
+  z-index: -1;
+}
+
+.modal-content {
+  position: relative;
+  padding: 3rem;
+  z-index: 1;
+}
+
+.btn-apply-modal {
+  padding: .5rem;
+  background-color: rgb(87, 168, 87);
+  color: #ecf2f4;
+}
+.btns{
+  display: flex;
+  align-items: center;
+}
+.btns .btn{
+  border: black 1px solid;
+  margin-right: 2px;
+  background-color: rgb(79, 170, 79);
+}
+.btns .btn:hover{
+  border: rgb(59, 58, 58) 1px solid;
+  background-color: rgb(72, 130, 15);
+  color: #ecf2f4;
+}
+.btn-delete{
+  border-radius: 2rem;
+  background-color: red;
+  padding: .4rem;
+  font-size: 2rem;
+  color: rgb(57, 55, 55);
+}
+.btn-delete:hover{
+  background-color: red;
+  color: rgb(209, 204, 204);
+}
+.error-text{
+  color: red;
+}

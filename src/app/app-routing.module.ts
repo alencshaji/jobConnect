@@ -16,6 +16,7 @@ import { LoginSignupUserComponent } from './login-signup-user/login-signup-user.
 import { LoginSignupCompComponent } from './login-signup-comp/login-signup-comp.component';
 import { SignupUserComponent } from './signup-user/signup-user.component';
 import { SavedJobComponent } from './user/saved-job/saved-job.component';
+import { CompanyViewApplicantsComponent } from './company/company-view-applicants/company-view-applicants.component';
 
 const routes: Routes = [
   {path:"user/login",component:LoginSignupUserComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
     {path:'company-home',component:CompanyHomeComponent},
     {path:'add-job',component:CompanyAddComponent},
     {path:'edit-job/:id',component:CompanyEditComponent},
+    {path:'view-applicants',component:CompanyViewApplicantsComponent}
    
   ]},
   {path:"admin",component:AdminComponent,children:[

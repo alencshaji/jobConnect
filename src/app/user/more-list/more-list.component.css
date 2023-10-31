@@ -260,7 +260,11 @@ ul {
   display: flex;
   justify-content: flex-end;
 }
-
+.title-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .modal-content::before {
   content: "";
   background: url("https://i.postimg.cc/NjDC8P9R/1-2-jobs-png-file.png");
@@ -286,3 +290,12 @@ ul {
   background-color: rgb(87, 168, 87);
   color: #ecf2f4;
 }
+.s2 {
+  color: rgb(220, 220, 208);
+}
+
+.s1 {
+  color: red;
+}
+
+

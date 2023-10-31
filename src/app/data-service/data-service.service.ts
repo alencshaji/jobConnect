@@ -57,9 +57,25 @@ export class DataServiceService {
   deleteJob(id: any) {
     return this.http.delete(`${this.baseUrl}company/delete/job/` + id)
   }
-  appliedJob(body:any) {
+  deleteSavedJob(id: any) {
+    return this.http.delete(`${this.baseUrl}user/delete/job/` + id)
+  }
+  deleteSavedAllJob(id: any) {
+    return this.http.delete(`${this.baseUrl}user/delete/job/all/` + id)
+  }
+  applyJob(body:any) {
   console.log(body);
-  
     return this.http.post(`${this.baseUrl}user/apply/job`,body)
   }
+  appliedJob(uid:any){
+    return this.http.get(`${this.baseUrl}user/applied/job/`+uid)
+  }
+  savedJobs(uid: any, jid: any) {
+    return this.http.post(`${this.baseUrl}user/saved/job/${uid}/${jid}`,{});
+  }
+  savedJobList(uid:any){
+    return this.http.get(`${this.baseUrl}user/saved/job/list/`+uid)
+  }
+  
+
 }

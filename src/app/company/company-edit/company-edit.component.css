@@ -1,6 +1,6 @@
-.main{
-  margin-top: 5rem;
- 
+.main {
+  margin-top: 7rem;
+
 }
 
 label {
@@ -8,15 +8,107 @@ label {
   font-weight: 600;
   color: #666;
 }
-.jumbotron{
+
+.jumbotron {
   padding: 1rem;
 }
+
 body {
-background: #f1f1f1;
+  background: #f1f1f1;
 }
-.box8{
-box-shadow: 0px 0px 5px 1px #999;
+
+.box8 {
+  box-shadow: 0px 0px 5px 1px #999;
 }
-.mx-t3{
-margin-top: -3rem;
+
+.mx-t3 {
+  margin-top: -3rem;
 }
+
+.material-icons:hover {
+  cursor: pointer;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+* {
+    box-sizing: border-box;
+  }
+  .navbar-fixed-top {
+    color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; 
+    background-color: #e2e2e2; 
+    padding-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.main-content{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.btn-add{
+    color: rgb(218, 220, 223);
+    border: rgb(13, 11, 11) 1px solid;
+    margin:1px;
+    background-color: green;
+}
+.btn-add:hover{
+    background-color: rgb(64, 130, 64);
+}
+.btn-view{
+    background-color: rgb(11, 71, 168);
+}
+.btn-view:hover{
+    background-color: rgb(48, 94, 167);
+}
+
+.btns-head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.logout:hover{
+  color: red;
+}
+.material-icons{
+  max-width: 1rem;
+}
+
+.login-company {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: #ec6212;
+  color: #fff;
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 5rem;
+  cursor: pointer;
+  font-weight: bold;
+  display: block;
+}
+
+.login-company:hover {
+  background-color: #cf390b;
+}
+
+.btns{
+  color: black;
+}
+
+
+
+
+
+
+
+
