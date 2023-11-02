@@ -1,0 +1,9 @@
+.main{
+    background-image: url('https://wallpapercave.com/wp/wp2508287.jpg');
+    background-size: cover;
+    background-repeat: no-repeat
+}
+.pagination{
+    padding-bottom: 5rem;
+    margin-bottom: 16rem;
+}

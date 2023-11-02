@@ -1,18 +1,21 @@
 <div class="main">
-    <form  class="login">
-        <form [formGroup]="userLoginF" (ngSubmit)="userLog()">
-            <h2>Welcome, User!</h2>
-            <p>Please log in</p>
-            <input type="email" formControlName="email" name="email" placeholder="Email" />
-            <input type="password" formControlName="psw" name="psw" placeholder="Password" />
-            <input type="submit" value="Log In" />
+    <div class="sec">
+        <form  class="login">
+            <form [formGroup]="userLoginF" (ngSubmit)="userLog()">
+                <h2>Welcome, User!</h2>
+                <p>Please log in</p>
+                <input type="email" formControlName="email" name="email" placeholder="Email" />
+                <input type="password" formControlName="psw" name="psw" placeholder="Password" />
+                <input type="submit" value="Log In" />
+            </form>
+            
+            <p>Or</p>
+            <input class="signup" type="submit" routerLink="/user/signup" value="Signup" />
+            <div class="links">
+                <a href="">Forgot password</a>
+                <a href="" routerLink="/company/login-signup">Login as Company</a>
+            </div>
         </form>
-        
-        <p>Or</p>
-        <input class="signup" type="submit" routerLink="/user/signup" value="Signup" />
-        <div class="links">
-            <a href="">Forgot password</a>
-            <a href="" routerLink="/company/login-signup">Login as Company</a>
-        </div>
-    </form>
+    </div>
+    
 </div>

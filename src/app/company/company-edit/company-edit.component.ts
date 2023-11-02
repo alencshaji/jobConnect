@@ -15,6 +15,7 @@ export class CompanyEditComponent implements OnInit {
   jData: any = ''
   jId: any = ''
   cname: any = ''
+  cid:any=''
   editForm = this.fb.group({
     jobTitle: ['', [Validators.required]],
     expirence: ['', [Validators.required]],
@@ -26,6 +27,7 @@ export class CompanyEditComponent implements OnInit {
     state: ['', [Validators.required]]
   })
   ngOnInit(): void {
+    this.cid=localStorage.getItem("cid")
     this.ar.params.subscribe((data: any) => {
       this.jId = data.id
     })

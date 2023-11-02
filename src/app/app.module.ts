@@ -15,6 +15,8 @@ import { LoginSignupCompComponent } from './login-signup-comp/login-signup-comp.
 import { LoginSignupUserComponent } from './login-signup-user/login-signup-user.component';
 import { SignupUserComponent } from './signup-user/signup-user.component';
 import { PaginatorModule } from 'primeng/paginator';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HeadSearchPipe } from './pipes/search-head/head-search.pipe';
 
 
 
@@ -26,6 +28,8 @@ import { PaginatorModule } from 'primeng/paginator';
     LoginSignupCompComponent,
     LoginSignupUserComponent,
     SignupUserComponent,
+    LandingPageComponent,
+    HeadSearchPipe,
    
 
   ],

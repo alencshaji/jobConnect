@@ -17,8 +17,10 @@
         <div class="search container">
             <h2>Search for your next job</h2>
             <form action="">
-                <input type="text" placeholder="Search by title, skill, or company" />
-                <input type="text" placeholder="City, state, or zip code" />
+                <input type="text" [(ngModel)]="searchData" name="searchData" (keyup)="accessData($event)"
+                autocomplete="off" type="search" placeholder="Search by title or company" />
+                <input type="text" [(ngModel)]="searchState" name="searchState" (keyup)="accessStateData($event)" autocomplete="off" type="search" placeholder="Search State" />
+
                 <button class="search__btn">Search</button>
             </form>
         </div>
@@ -26,7 +28,7 @@
         <div class="listings container">
             <h3 class="listings__heading">More Jobs</h3>
             <ul class="listings__grid">
-                <li class="card" *ngFor="let i of pdata">
+                <li class="card" *ngFor="let i of pdata  | stateSearch: searchStateString:['state'] | headerSearch: searchString:['title', 'cname']">
                     <div class="more">
                         <img src="https://logo.clearbit.com/google.com" alt="" class="card__logo" />
                         <h3>
@@ -108,13 +110,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
-            <div class="modal-body mt-4" *ngFor="let i of appliedData">
+            <h2 class="text-center msge">{{msg}}</h2>
+            <div class="modal-body mt-4" *ngFor="let i of appliedData ">
                 <hr class="mb-4">
                 <div class="bodytext flex-prop">
                     <h6>{{i.cname}}</h6>
                     <h4 class="title-content">{{i.title }}</h4>
                 </div>
-                <h5 class="text-botom">Status :<span class="text-success">Applied</span></h5>
+                <h5 class="text-botom">Status :<span class="text-success">{{i.status}}</span></h5>
             </div>
         </div>
     </div>

@@ -9,6 +9,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -23,7 +26,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSliderModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class MaterialModule { }

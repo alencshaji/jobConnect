@@ -29,9 +29,12 @@ export class LoginSignupUserComponent {
       this.db.userLogin(this.userLoginF.value.email,this.userLoginF.value.psw).subscribe({
         next:(result:any)=>{
           alert(result.message)
+      
+          
           localStorage.setItem("user",result._id)
+          localStorage.setItem("cat",result.category)
           localStorage.setItem("fname",result.fname)
-          this.route.navigateByUrl("")
+          this.route.navigateByUrl("/user")
         },
         error:(result:any)=>{
           alert(result.error.message)

@@ -9,12 +9,22 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav">
                 <a href="#" class="nav-item nav-link active">Home</a>
-                <a class="nav-item nav-link">Profile</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-item nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">View</a></li>
+                        <li><a class="dropdown-item" (click)="goToSaved()">Saved Jobs</a></li>
+                        <li><a class="dropdown-item" href="#">Edit</a></li>
+                      </ul>
+                </li>
+                
                 <a class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="appiedJobs()">Applied Jobs</a>
             </div>
             <form class="d-flex">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input [(ngModel)]="searchData" name="searchData" (keyup)="accessData($event)"
+                            autocomplete="off" type="search" class="form-control rounded" placeholder="Search"
+                            style="min-width: 125px;" />
                     <button class="btn btn-sm btn-secondary">
                         <span class="material-symbols-outlined">
                             search
@@ -28,7 +38,7 @@
                 <a class="nav-item nav-link" matTooltip="Login/Signup" routerLink="user/login"><span class="material-symbols-outlined">
                     login
                     </span></a>
-                <a   class="nav-item nav-link" matTooltip="Logout"><span class="material-symbols-outlined">
+                <a   class="nav-item nav-link" (click)="logOut()" matTooltip="Logout"><span class="material-symbols-outlined">
                     logout
                     </span></a>
             </div>
@@ -48,13 +58,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
+            <h2 class="text-center msge">{{msg}}</h2>
             <div class="modal-body mt-4" *ngFor="let i of appliedData">
                 <hr class="mb-4">
                 <div class="bodytext flex-prop">
                     <h5>{{i.cname}}</h5>
                     <h4 class="title-content">{{i.title }}</h4>
                 </div>
-                <h5 class="text-botom">Status :<span class="text-success">Applied</span></h5>
+                <h5 class="text-botom">Status :<span class="text-success">{{i.status}}</span></h5>
             </div>
         </div>
     </div>

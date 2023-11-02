@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataServiceService } from 'src/app/data-service/data-service.service';
+import { DataServiceService } from '../data-service/data-service.service';
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-user-home',
-  templateUrl: './user-home.component.html',
-  styleUrls: ['./user-home.component.css']
+  selector: 'app-landing-page',
+  templateUrl: './landing-page.component.html',
+  styleUrls: ['./landing-page.component.css']
 })
-export class UserHomeComponent implements OnInit {
+export class LandingPageComponent implements OnInit {
   pdata: any = []
   uid: any = []
   singleView: any = []
@@ -26,23 +26,14 @@ export class UserHomeComponent implements OnInit {
       this.searchString = data
     })
   }
-
   constructor(private route: Router, private db: DataServiceService, private ar: ActivatedRoute) { }
   allJobs() {
     this.db.allJObs().subscribe({
       next: (result: any) => {
-        const userCategory = localStorage.getItem('cat');
-        this.pdata = result.message.sort((a: any, b: any) => {
-          if (a.category === userCategory && b.category !== userCategory) {
-            return -1; // job user's category at the beginning
-          } else if (a.category !== userCategory && b.category === userCategory) {
-            return 1; // jobs user's category after other categories
-          } else {
-            return 0; // Maintain the order within the same category
-          }
-        });
-        this.categoryJob('All');
-        
+        this.pdata = result.message
+        if(this.pdata){
+          this.categoryJob('All');
+        }
       },
       error: (result: any) => {
         alert(result)
@@ -58,7 +49,6 @@ export class UserHomeComponent implements OnInit {
         jid,
         uid: this.uid
       }
-
       this.db.applyJob(body).subscribe({
         next: (res: any) => {
           if (res.status === false) {
@@ -69,10 +59,12 @@ export class UserHomeComponent implements OnInit {
         },
         error: (result: any) => {
           alert(result.message)
+
         }
       })
     } else {
       this.showLoginAlert()
+      this.route.navigateByUrl("/user/login")
     }
   }
   savedJobs(jid: any) {
@@ -88,6 +80,17 @@ export class UserHomeComponent implements OnInit {
           alert(result.message)
         }
       })
+    } else {
+      this.showLoginAlert()
+      this.route.navigateByUrl("")
+    }
+  }
+  more() {
+    if (localStorage.getItem("user")) {
+      this.route.navigateByUrl('/user/more-list')
+    } else {
+      this.showLoginAlert()
+      this.route.navigateByUrl('/user/login')
     }
   }
   showLoginAlert() {
@@ -137,25 +140,29 @@ export class UserHomeComponent implements OnInit {
       })
     } else {
       this.showLoginAlert()
+      this.route.navigateByUrl("")
     }
 
 
   }
-  categoryJob(selectedCategory:string) {
-    this.selectedCategory = selectedCategory
- 
-     if (selectedCategory === 'All') {
-       // Show all products when "All" is selected
-       this.filteredProducts = this.pdata;
-       console.log(this.filteredProducts);
-       
-     } else {
-       // Filter products by category name
-       this.filteredProducts = this.pdata.filter((item: any) => item.jobtype === selectedCategory);
-     }
-   } 
+
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+
+  categoryJob(selectedCategory:string) {
+   this.selectedCategory = selectedCategory
+
+    if (selectedCategory === 'All') {
+      // Show all products when "All" is selected
+      this.filteredProducts = this.pdata;
+      console.log(this.filteredProducts);
+      
+    } else {
+      // Filter products by category name
+      this.filteredProducts = this.pdata.filter((item: any) => item.jobtype === selectedCategory);
+    }
+  } 
 
 }

@@ -36,7 +36,9 @@
                 </div>
                 <div class="col-sm-6 form-group">
                     <label for="Country">Country</label>
-                    <input type="text" class="form-control" formControlName="country" name="country" id="country" placeholder="Country" required>
+                    <select id="country" formControlName="country" (change)="updateCountry()" class="form-control browser-default custom-select">
+                        <option value="India">India</option>
+                    </select>
 
                 </div>
                 <div class="col-sm-6 form-group">
@@ -53,10 +55,7 @@
                 </div>
                 <div class="col-sm-2 form-group">
                     <label for="cod">Country code</label>
-                    <select id="country" formControlName="country" (change)="updateCountry()" class="form-control browser-default custom-select">
-                        <option value="India">India</option>
-                    </select>
-
+                    <input type="text" class="form-control" formControlName="cod" name="cod" id="cod" placeholder="Country Code" required>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label for="tel">Phone</label>

@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 .main{
     padding: 5rem;
-    height: 100vh;
+  height: 100vh;
   background: #232020;
   font-family: Raleway, sans-serif;
   color: #666;
 }
 
+.sec{
+  padding-top: 5rem;
+}
 .login {
+ 
   margin: 20px auto;
   padding: 40px 50px;
   max-width: 400px;
@@ -128,4 +132,10 @@
     .login input {
         width: 100%;
     }
+   
+}
+@media (min-width: 1200px){
+  .sec{
+    padding-top: 0rem;
+  }
 }

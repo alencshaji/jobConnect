@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,18 @@ export class DataServiceService {
 
   baseUrl: any = "http://localhost:5004/"
 
-
+  search = new BehaviorSubject("")
+  searchState = new BehaviorSubject("")
   //admin login
   adminLogin(uname: any, psw: any) {
     const bodyData = { uname, psw };
     return this.http.post(`${this.baseUrl}admin/login`, bodyData)
+  }
+  userData(){
+    return this.http.get(`${this.baseUrl}admin/userData`)
+  }
+  companyData(){
+    return this.http.get(`${this.baseUrl}admin/companyData`)
   }
   userLogin(email: any, psw: any) {
     const bodyData = { email, psw };
@@ -54,6 +61,8 @@ export class DataServiceService {
   editJobs(id: any, body: any) {
     return this.http.put(`${this.baseUrl}company/job/edit/` + id, body)
   }
+
+  //delete
   deleteJob(id: any) {
     return this.http.delete(`${this.baseUrl}company/delete/job/` + id)
   }
@@ -63,6 +72,14 @@ export class DataServiceService {
   deleteSavedAllJob(id: any) {
     return this.http.delete(`${this.baseUrl}user/delete/job/all/` + id)
   }
+  deleteCompany(cid:any){
+    return this.http.delete(`${this.baseUrl}admin/delete/company/`+cid)
+  }
+  deleteUser(uid:any){
+    return this.http.delete(`${this.baseUrl}admin/delete/user/`+uid)
+  }
+
+  //
   applyJob(body:any) {
   console.log(body);
     return this.http.post(`${this.baseUrl}user/apply/job`,body)
@@ -76,6 +93,11 @@ export class DataServiceService {
   savedJobList(uid:any){
     return this.http.get(`${this.baseUrl}user/saved/job/list/`+uid)
   }
-  
+  viewApplicants(cid:any){
+    return this.http.get(`${this.baseUrl}company/getapplicantDetails/`+cid)
+  }
+  statusChanger(cid:any,uid:any,jid:any,body:any){
+    return this.http.put(`${this.baseUrl}company/application/status/${cid}/${uid}/${jid}`,body)
+  }
 
 }

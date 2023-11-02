@@ -22,6 +22,37 @@
     justify-content: space-between;
 
 }
+.content-card{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.btns-sec{
+    display: flex;
+    align-items: center;
+  justify-content: flex-end;
+ 
+}
+.btns-sec button{
+    border: none;
+    background: none;
+}
+.btns-sec .b1{
+    margin-right: .5rem;
+}
+.btns-sec button{
+    border-left: black 1px solid !important;
+
+    border-right: black 1px solid !important;
+}
+.view-btn{
+    margin-top: 1rem;
+}
+
+
+
+
 .btn-add{
     color: rgb(218, 220, 223);
     border: rgb(13, 11, 11) 1px solid;
@@ -44,6 +75,17 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+.card-holder{
+    color: rgb(17, 18, 19);
+}
+.logout:hover{
+    color: red;
+}
+  
+.btns{
+    color: black;
+}
+
 
 
 
@@ -68,8 +110,15 @@
 .btns{
     color: black;
 }
+.sec{
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
 
-
+.msge{
+    color: #cf390b;
+    
+}
 
 
 

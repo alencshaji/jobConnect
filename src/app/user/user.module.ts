@@ -8,6 +8,8 @@ import { MoreListComponent } from './more-list/more-list.component'
 import { PaginatorModule } from 'primeng/paginator';
 import { FormsModule } from '@angular/forms';
 import { SavedJobComponent } from './saved-job/saved-job.component';
+import { HeaderSearchPipe } from './pipes/header-search.pipe';
+import { StateSearchPipe } from './pipes/state-search.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { SavedJobComponent } from './saved-job/saved-job.component';
     UserComponent,
     MoreListComponent,
     SavedJobComponent,
+    HeaderSearchPipe,
+    StateSearchPipe,
    
   ],
   imports: [

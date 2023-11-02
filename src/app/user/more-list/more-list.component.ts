@@ -14,13 +14,37 @@ export class MoreListComponent implements OnInit {
   appliedData:any=[]
   savedData: any = []
   starClr: boolean =false;
+  msg:any=''
+  searchString: any = ""
+  searchStateString:any=''
+  searchState:any=''
+  searchData: string = '';
+  filteredProducts: any = [];
+  selectedCategory: string = 'All';
+
   ngOnInit(): void {
     this.scrollToTop()
     this.allJobs()
+    this.db.search.subscribe((data: any) => {
+      this.searchString = data
+    })
+    this.db.searchState.subscribe((udata: any) => {
+      this.searchStateString = udata
+    })
   }
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  accessData(event: any) {
+    this.searchData = event.target.value;
+    this.db.search.next(this.searchData);
+  }
+  accessStateData(event: any) {
+    this.searchState = event.target.value;
+    this.db.searchState.next(this.searchState);
+  }
+  
 
 
 
@@ -80,7 +104,9 @@ export class MoreListComponent implements OnInit {
         next: (result: any) => {
           this.appliedData = result.message
           console.log(this.appliedData);
-          
+          if(this.appliedData.length === 0){
+            this.msg = '"No Applied Jobs"'
+          }
         },
         error:(result:any)=>{
         alert(result)
@@ -132,5 +158,13 @@ export class MoreListComponent implements OnInit {
       confirmButtonText: "Close"
     });
   }
+  categoryJob(selectedCategory:string) {
+    this.selectedCategory = selectedCategory
+     if (selectedCategory === 'All') {
+       this.filteredProducts = this.pdata;
+     } else {
+       this.filteredProducts = this.pdata.filter((item: any) => item.jobtype === selectedCategory);
+     }
+   } 
 
 }

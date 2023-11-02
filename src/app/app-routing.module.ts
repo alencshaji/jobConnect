@@ -17,12 +17,13 @@ import { LoginSignupCompComponent } from './login-signup-comp/login-signup-comp.
 import { SignupUserComponent } from './signup-user/signup-user.component';
 import { SavedJobComponent } from './user/saved-job/saved-job.component';
 import { CompanyViewApplicantsComponent } from './company/company-view-applicants/company-view-applicants.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
   {path:"user/login",component:LoginSignupUserComponent},
  {path:"user/signup",component:SignupUserComponent},
+ {path:'',component:LandingPageComponent},
   {path:"company/login-signup",component:LoginSignupCompComponent},
-  { path: '', redirectTo: 'user', pathMatch: 'full' },
   {path:'user',component:UserComponent,children:[
     { path: '', redirectTo: 'user-home', pathMatch: 'full' },
     {path:'user-home',component:UserHomeComponent},
@@ -34,7 +35,7 @@ const routes: Routes = [
     {path:'company-home',component:CompanyHomeComponent},
     {path:'add-job',component:CompanyAddComponent},
     {path:'edit-job/:id',component:CompanyEditComponent},
-    {path:'view-applicants',component:CompanyViewApplicantsComponent}
+    {path:'view-applicants/:cid',component:CompanyViewApplicantsComponent}
    
   ]},
   {path:"admin",component:AdminComponent,children:[

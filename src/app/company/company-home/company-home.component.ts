@@ -11,14 +11,19 @@ import { DataServiceService } from 'src/app/data-service/data-service.service';
 export class CompanyHomeComponent implements OnInit {
   cname: any = ''
   cid: any = ''
+  msg:any=''
   pdata: any = []
   adata: any = []
   ngOnInit(): void {
     this.cname = localStorage.getItem("company")
     this.cid = localStorage.getItem("cid")
     this.allJObs()
+    this.scrollToTop()
   }
   constructor(private fb: FormBuilder, private route: Router, private db: DataServiceService) { }
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   allJObs() {
     this.db.allJObs().subscribe({
@@ -26,6 +31,9 @@ export class CompanyHomeComponent implements OnInit {
         this.adata = result.message
         this.pdata = this.adata.filter((job: any) => job.cid === this.cid)
         console.log(this.pdata);
+        if(this.pdata.length === 0){
+          this.msg = '"No Jobs Posted"'
+        }
       },
       error: (result: any) => {
         alert(result)
