@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/data-service/data-service.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -11,9 +12,9 @@ export class CompanyViewApplicantsComponent implements OnInit {
   pdata: any = []
   adata: any = []
   cid: any = ''
-  msg: any =''
+  msg: any = ''
   status: any = 'Confirmed'
-  constructor(private db: DataServiceService) { }
+  constructor(private db: DataServiceService,private route:Router) { }
   ngOnInit(): void {
     this.cname = localStorage.getItem("company")
     console.log(this.cname);
@@ -29,7 +30,7 @@ export class CompanyViewApplicantsComponent implements OnInit {
           this.adata = result.message
           console.log(this.adata);
           this.pdata = this.adata.filter((job: any) => job.cid === this.cid)
-          if(this.pdata.length === 0){
+          if (this.pdata.length === 0) {
             this.msg = '"No Applicants"'
           }
         },
@@ -63,7 +64,16 @@ export class CompanyViewApplicantsComponent implements OnInit {
       }
     })
   }
-
+  viewPdf(path: any) {
+    this.db.view(path).subscribe({
+      next: (result: any) => {
+        alert(result)
+      },
+      error: (result: any) => {
+        alert(result.message)
+      }
+    })
+  }
   showConfirmedlert() {
     Swal.fire({
       title: "Confirmed",
@@ -78,5 +88,8 @@ export class CompanyViewApplicantsComponent implements OnInit {
       confirmButtonText: "Close"
     });
   }
-
+  logout(){
+    localStorage.clear()
+    this.route.navigateByUrl("/company/login-signup")
+  }
 }

@@ -10,7 +10,7 @@
                 <span class="material-icons home" matTooltip="Back to Home" routerLink="/company">
                     home
                 </span>
-                <span class="material-icons ms-3 logout" matTooltip="Logout">
+                <span class="material-icons ms-3 logout" matTooltip="Logout" (click)="logout()">
                     logout
                 </span>
 
@@ -67,8 +67,8 @@
                 <div class="col-sm-6 form-group">
                     <label for="jobtype">Job Type</label>
                     <select id="jobtype" formControlName="jobType" (change)="updateSelectedType()" class="form-control browser-default custom-select">
-                        <option value="Full-time">Full Time</option>
-                        <option value="Part-time">Part Time</option>
+                        <option value="Full time">Full Time</option>
+                        <option value="Part time">Part Time</option>
                         <option value="Contract">Contract</option>
                     </select>
                 </div>

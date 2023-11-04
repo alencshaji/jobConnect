@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
           }
         },
         error: (result: any) => {
-          alert(result)
+          alert(result.error.message)
         }
       })
     } else {
@@ -42,7 +42,12 @@ export class HeaderComponent implements OnInit {
     });
   }
   goToSaved(){
-    this.route.navigateByUrl("/user/saved-job")
+    if(localStorage.getItem("token")){
+      this.route.navigateByUrl("/user/saved-job")
+    }else{
+      this.showLoginAlert()
+    }
+
   }
   logOut(){
     localStorage.clear()

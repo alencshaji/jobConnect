@@ -88,4 +88,8 @@ export class CompanyAddComponent implements OnInit {
     const couValue = this.jobForm.get('country')?.value;
     this.selectedCountry = couValue;
   }
+  logout(){
+    localStorage.clear()
+    this.route.navigateByUrl("/company/login-signup")
+  }
 }

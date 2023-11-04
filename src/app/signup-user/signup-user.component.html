@@ -1,6 +1,6 @@
 <div class="main">
     <div class="container mt-5">
-        <form [formGroup]="signUpForm" (ngSubmit)="userSignup()">
+        <form [formGroup]="signUpForm" (ngSubmit)="userSignup()"  enctype="multipart/form-data">
             <div class="row jumbotron box8">
                 <div class="col-sm-12 ">
                     <h2 class="text-center text-info">User Register</h2>
@@ -25,10 +25,12 @@
                     <input type="text" class="form-control" formControlName="uname" name="username" id="username" placeholder="username"
                         required>
                 </div>
-                <!-- <div class="col-sm-6 form-group">
+                <div class="col-sm-6 form-group">
                     <label for="resume">Resume</label>
-                    <input type="address" class="form-control" name="resume" id="resume" placeholder="Resume" required>
-                </div> -->
+                    <input type="file" (change)=" uploadResume($event)" />
+                    <p *ngIf="selectedFileName">{{selectedFileName}}</p>
+                    
+                </div>
                 <div class="col-sm-6 form-group">
                     <label for="State">State</label>
                     <input type="state" formControlName="state" class="form-control" name="State" id="State"

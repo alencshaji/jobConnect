@@ -8,27 +8,25 @@
             <i class="fa fa-solid fa-suitcase"></i>
             <span>Applied Jobs</span>
         </a>
-        <a class="iconss">
+        <!-- <a class="iconss">
             <i class="fa fa-solid fa-bell"></i>
             <span>Job Alerts</span>
-        </a>
+        </a> -->
     </nav>
     <div class="main-content">
         <div class="search container">
             <h2>Search for your next job</h2>
             <form action="">
                 <input type="text" [(ngModel)]="searchData" name="searchData" (keyup)="accessData($event)"
-                autocomplete="off" type="search" placeholder="Search by title or company" />
+                autocomplete="off" type="search" placeholder="Search by title,company or job type" />
                 <input type="text" [(ngModel)]="searchState" name="searchState" (keyup)="accessStateData($event)" autocomplete="off" type="search" placeholder="Search State" />
-
-                <button class="search__btn">Search</button>
             </form>
         </div>
 
         <div class="listings container">
             <h3 class="listings__heading">More Jobs</h3>
             <ul class="listings__grid">
-                <li class="card" *ngFor="let i of pdata  | stateSearch: searchStateString:['state'] | headerSearch: searchString:['title', 'cname']">
+                <li class="card" *ngFor="let i of pdata  | stateSearch: searchStateString:['state'] | headerSearch: searchString:['title', 'cname','jobtype']">
                     <div class="more">
                         <img src="https://logo.clearbit.com/google.com" alt="" class="card__logo" />
                         <h3>

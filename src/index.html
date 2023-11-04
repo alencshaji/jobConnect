@@ -13,7 +13,29 @@
 </head>
 <body class="mat-typography">
   <app-root></app-root>
- 
+  <!-- userSignup() {
+    if (this.signUpForm.valid) {
+      this.db.userRegister(
+        this.signUpForm.value.fname, this.signUpForm.value.lname, this.signUpForm.value.uname,
+        this.signUpForm.value.email, this.signUpForm.value.psw, this.signUpForm.value.country, this.signUpForm.value.category,
+        this.signUpForm.value.state, this.signUpForm.value.dob, this.signUpForm.value.gender,
+        this.signUpForm.value.cod, this.signUpForm.value.ph
+      ).subscribe({
+        next: (result: any) => {
+          alert("Registered Succesfully");
+          this.signUpForm.reset();
+        },
+        error: (result: any) => {
+          alert(result.error.message);
+        }
+      })
+    } else {
+      alert("invalid data")
+    }
+
+
+  } -->
+
  
 
 </body>

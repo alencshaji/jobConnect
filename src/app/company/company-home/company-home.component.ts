@@ -57,4 +57,8 @@ export class CompanyHomeComponent implements OnInit {
     }
     
   }
+  logout(){
+    localStorage.clear()
+    this.route.navigateByUrl("/company/login-signup")
+  }
 }

@@ -20,7 +20,6 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.allJobs()
-    this.savedJobLists()
     this.scrollToTop()
     this.db.search.subscribe((data: any) => {
       this.searchString = data
@@ -64,7 +63,6 @@ export class LandingPageComponent implements OnInit {
       })
     } else {
       this.showLoginAlert()
-      this.route.navigateByUrl("/user/login")
     }
   }
   savedJobs(jid: any) {

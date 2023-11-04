@@ -75,4 +75,8 @@ this.db.editJobs(this.jId,this.jData).subscribe({
     const couValue = this.editForm.get('country')?.value;
     this.selectedCountry = couValue;
   }
+  logout(){
+    localStorage.clear()
+    this.route.navigateByUrl("/company/login-signup")
+  }
 }

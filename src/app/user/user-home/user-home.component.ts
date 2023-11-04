@@ -25,9 +25,28 @@ export class UserHomeComponent implements OnInit {
     this.db.search.subscribe((data: any) => {
       this.searchString = data
     })
+    const hasShownWelcome = localStorage.getItem('hasShownWelcome');
+    if (!hasShownWelcome) {
+      this.showWelcome();
+      // Set the flag to indicate that showWelcome has been called
+      localStorage.setItem('hasShownWelcome', 'true');
+    }
+  }
+  
+  constructor(private route: Router, private db: DataServiceService, private ar: ActivatedRoute) { }
+
+  showWelcome() {
+    if (localStorage.getItem('fname')) {
+      const name = localStorage.getItem('fname');
+      Swal.fire({
+        title: `Welcome, ${name}`,
+        icon: 'success',
+        confirmButtonText: 'Close'
+      });
+    }
   }
 
-  constructor(private route: Router, private db: DataServiceService, private ar: ActivatedRoute) { }
+
   allJobs() {
     this.db.allJObs().subscribe({
       next: (result: any) => {
@@ -42,7 +61,7 @@ export class UserHomeComponent implements OnInit {
           }
         });
         this.categoryJob('All');
-        
+
       },
       error: (result: any) => {
         alert(result)
@@ -141,19 +160,19 @@ export class UserHomeComponent implements OnInit {
 
 
   }
-  categoryJob(selectedCategory:string) {
+  categoryJob(selectedCategory: string) {
     this.selectedCategory = selectedCategory
- 
-     if (selectedCategory === 'All') {
-       // Show all products when "All" is selected
-       this.filteredProducts = this.pdata;
-       console.log(this.filteredProducts);
-       
-     } else {
-       // Filter products by category name
-       this.filteredProducts = this.pdata.filter((item: any) => item.jobtype === selectedCategory);
-     }
-   } 
+
+    if (selectedCategory === 'All') {
+      // Show all products when "All" is selected
+      this.filteredProducts = this.pdata;
+      console.log(this.filteredProducts);
+
+    } else {
+      // Filter products by category name
+      this.filteredProducts = this.pdata.filter((item: any) => item.jobtype === selectedCategory);
+    }
+  }
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

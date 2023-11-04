@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataServiceService } from '../data-service/data-service.service';
 
 @Component({
@@ -11,13 +11,14 @@ import { DataServiceService } from '../data-service/data-service.service';
 export class SignupUserComponent {
   selectedGender: any = '';
   selectedCategory: any = '';
-  selectedCountry:any='';
-
+  selectedCountry: any = '';
+  selectedFileName: string = '';
   signUpForm = this.fb.group({
     fname: ["", [Validators.required]],
     lname: ["", [Validators.required]],
     email: ["", [Validators.required]],
     uname: ["", [Validators.required]],
+    resume: [null as File | null],
     country: ["", [Validators.required]],
     state: ["", [Validators.required]],
     dob: ["", [Validators.required]],
@@ -25,36 +26,104 @@ export class SignupUserComponent {
     cod: ["", [Validators.required]],
     ph: ["", [Validators.required]],
     psw: ["", [Validators.required]],
-    category: ["", [Validators.required]]
+    category: ["", [Validators.required]],
+
   })
 
 
   constructor(private fb: FormBuilder, private db: DataServiceService) { }
+
+
+  uploadResume(event: any) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+      this.signUpForm.patchValue({ resume: file });
+      this.selectedFileName = file.name;
+    }
+  }
+
+
+
+  // userSignup() {
+  //   if (this.signUpForm.valid) {
+
+  //     const file = this.signUpForm.get('resume')!.value as File;
+
+  //     const path = this.signUpForm.value
+  //     const formData = {
+  //       fname: path.fname,
+  //       lname: path.lname,
+  //       username: path.uname,
+  //       email: path.email,
+  //       psw: path.psw,
+  //       country: path.country,
+  //       category: path.category,
+  //       state: path.state,
+  //       dob: path.dob,
+  //       gender: path.gender,
+  //       cod: path.cod,
+  //       ph: path.ph,
+  //       resume: file,
+  //     }
+  //     console.log(formData);
+
+
+
+
+  //     this.db.userRegister(formData).subscribe({
+  //       next: (result: any) => {
+  //         alert('Registered Successfully');
+  //         this.signUpForm.reset();
+  //       },
+  //       error: (result: any) => {
+  //         alert(result.error.message);
+  //       }
+  //     });
+  //   } else {
+  //     alert('Invalid data');
+  //   }
+  // }
   userSignup() {
     if (this.signUpForm.valid) {
-      
-      
-      this.db.userRegister(
-        this.signUpForm.value.fname, this.signUpForm.value.lname, this.signUpForm.value.uname,
-        this.signUpForm.value.email, this.signUpForm.value.psw, this.signUpForm.value.country, this.signUpForm.value.category,
-        this.signUpForm.value.state, this.signUpForm.value.dob, this.signUpForm.value.gender,
-        this.signUpForm.value.cod, this.signUpForm.value.ph
-      ).subscribe({
+      const formData = new FormData();
+      const file = this.signUpForm.get('resume')?.value as File;
+  
+      formData.append('fname', this.signUpForm.get('fname')?.value?.toString() || '');
+      formData.append('lname', this.signUpForm.get('lname')?.value?.toString() || '');
+      formData.append('username', this.signUpForm.get('uname')?.value?.toString() || '');
+      formData.append('email', this.signUpForm.get('email')?.value?.toString() || '');
+      formData.append('psw', this.signUpForm.get('psw')?.value?.toString() || '');
+      formData.append('country', this.signUpForm.get('country')?.value?.toString() || '');
+      formData.append('category', this.signUpForm.get('category')?.value?.toString() || '');
+      formData.append('state', this.signUpForm.get('state')?.value?.toString() || '');
+      formData.append('dob', this.signUpForm.get('dob')?.value?.toString() || '');
+      formData.append('gender', this.signUpForm.get('gender')?.value?.toString() || '');
+      formData.append('cod', this.signUpForm.get('cod')?.value?.toString() || '');
+      formData.append('ph', this.signUpForm.get('ph')?.value?.toString() || '');
+      if (file) {
+        formData.append('resume', file);
+        console.log(file);
+        
+      }
+  
+      console.log(formData);
+  
+      this.db.userRegister(formData).subscribe({
         next: (result: any) => {
-          alert("Registered Succesfully");
+          alert('Registered Successfully');
           this.signUpForm.reset();
         },
         error: (result: any) => {
-          alert(result.message);
+          alert(result.error.message);
         }
-      })
+      });
     } else {
-      alert("invalid data")
+      alert('Invalid data');
     }
-
-
   }
-
+  
+  
 
 
   updateSelectedGender() {
@@ -65,8 +134,27 @@ export class SignupUserComponent {
     const categoryValue = this.signUpForm.get('category')?.value;
     this.selectedCategory = categoryValue;
   }
-  updateCountry(){
-    const  couValue= this.signUpForm.get('country')?.value;
-    this.selectedCountry =couValue;
+  updateCountry() {
+    const couValue = this.signUpForm.get('country')?.value;
+    this.selectedCountry = couValue;
   }
 }
+
+
+
+
+// onFileSelect(event: Event) {
+//   const inputElement = event.target as HTMLInputElement;
+//   if (inputElement && inputElement.files && inputElement.files.length > 0) {
+//     const file = inputElement.files[0];
+//     const allowedTypes = ['application/pdf'];
+//     if (file && allowedTypes.includes(file.type)) {
+//       // this.signUpForm.patchValue({ resume: file });
+//       const reader = new FileReader();
+//       reader.readAsDataURL(file);
+//       console.log(file);
+//     } else {
+//       alert('PDF files only are allowed!!');
+//     }
+//   }
+// }

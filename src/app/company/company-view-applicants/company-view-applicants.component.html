@@ -8,7 +8,7 @@
                 <span class="material-icons home" matTooltip="Back to Home" routerLink="/company">
                     home
                 </span>
-                <span class="material-icons ms-3 logout" matTooltip="Logout">
+                <span class="material-icons ms-3 logout" matTooltip="Logout" (click)="logout()">
                     logout
                 </span>
 
@@ -32,7 +32,7 @@
                         <p><strong>State : </strong>{{i.state}}</p>
                     </div>
                     <div class="cardtext col-md-4">
-                        <p><strong>Resume :</strong></p>
+                        <p><strong>Resume :</strong><button class="btn" (click)="viewPdf(i.resume)">View</button></p>
                     </div>
                 </div>
                 <div class="content-card d-flex mt-2 mb-2">
