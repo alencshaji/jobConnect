@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataServiceService } from '../data-service/data-service.service';
 import Swal from 'sweetalert2';
+import { formatDistanceToNow } from 'date-fns';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -161,6 +162,14 @@ export class LandingPageComponent implements OnInit {
       // Filter products by category name
       this.filteredProducts = this.pdata.filter((item: any) => item.jobtype === selectedCategory);
     }
+    this.filteredProducts.forEach((job: any) => {
+      job.createdAt = new Date(job.createdAt);
+        job.createdDate = formatDistanceToNow(job.createdAt, { addSuffix: true });
+      });
+      this.filteredProducts.sort((a:any,b:any)=>b.createdAt - a.createdAt)
+      this.filteredProducts = this.filteredProducts.slice(0, 10);
   } 
+
+  
 
 }

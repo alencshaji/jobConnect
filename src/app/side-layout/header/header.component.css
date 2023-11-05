@@ -18,7 +18,9 @@
   border: none;
 }
 
-
+.nav-item:hover {
+  cursor: pointer;
+}
 .flex-prop {
   display: flex;
   align-items: center;

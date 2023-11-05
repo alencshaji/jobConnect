@@ -12,10 +12,15 @@ export class HeaderComponent implements OnInit {
   uid:any=''
   msg:any=''
   searchData: string = '';
+  isLogin :Boolean = false
+
   ngOnInit(): void {
     
   }
-  constructor(private db:DataServiceService,private route : Router){}
+  constructor(private db:DataServiceService,private route : Router){
+    const token = localStorage.getItem('token')
+    this.isLogin= token !== null
+  }
   appiedJobs() {
     if (localStorage.getItem("user")) {
       this.uid = localStorage.getItem("user")
@@ -51,6 +56,7 @@ export class HeaderComponent implements OnInit {
   }
   logOut(){
     localStorage.clear()
+    this.isLogin = false
     this.route.navigateByUrl("")
   }
 
@@ -60,5 +66,10 @@ export class HeaderComponent implements OnInit {
     console.log('Search Data (accessData):', this.searchData); // Add this line
     this.db.search.next(this.searchData);
     console.log('Search Data (BehaviorSubject):', this.searchData); // Add this line
+  }
+  home(){
+    if(localStorage.getItem("token")){
+      this.route.navigateByUrl("/user")
+    }
   }
 }

@@ -47,8 +47,8 @@ export class DataServiceService {
   userRegister(bodyData:any) {
     return this.http.post(`${this.baseUrl}user/register`, bodyData)
   }
-  companyRegister(cname: any, email: any, psw: any) {
-    const bodyData = { cname, email, psw };
+  companyRegister(cname: any, email: any, psw: any,logo:any) {
+    const bodyData = { cname, email, psw,logo };
     return this.http.post(`${this.baseUrl}company/register`, bodyData)
   }
   companyLogin(email: any, psw: any) {
@@ -105,9 +105,14 @@ export class DataServiceService {
   statusChanger(cid:any,uid:any,jid:any,body:any){
     return this.http.put(`${this.baseUrl}company/application/status/${cid}/${uid}/${jid}`,body)
   }
-  view(path:any){
-    const urlEncodedFileName = encodeURIComponent(path);
-    return this.http.get(`${this.baseUrl}`+urlEncodedFileName)
+  
+  view(path: string) {
+    return this.http.get(`${this.baseUrl}${path}`);
   }
+  
+  
+  
+  
+
 
 }

@@ -23,22 +23,21 @@
         <div class="menu-sec">
             <div class="menu-btn">
                 <div class="btn-group">
-                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Sort By
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Sort By
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <li><a class="dropdown-item" (click)="sortJobs('posted')">Job Posted</a></li>
+                      <!-- <li><a class="dropdown-item">Company</a></li> -->
                     </ul>
-                </div>
+                  </div>
+                  
                 <mat-chip-option (click)="categoryJob('All')"
                     [selected]="selectedCategory === 'All'">All</mat-chip-option>
-                <mat-chip-option (click)="categoryJob('Full-time')"
-                    [selected]="selectedCategory === 'Full-time'">Full-time</mat-chip-option>
-                <mat-chip-option (click)="categoryJob('Part-time')"
-                    [selected]="selectedCategory === 'Part-time'">Part-time</mat-chip-option>
+                <mat-chip-option (click)="categoryJob('Full time')"
+                    [selected]="selectedCategory === 'Full time'">Full time</mat-chip-option>
+                <mat-chip-option (click)="categoryJob('Part time')"
+                    [selected]="selectedCategory === 'Part time'">Part time</mat-chip-option>
                 <mat-chip-option (click)="categoryJob('Contract')"
                     [selected]="selectedCategory === 'Contract'">Contract</mat-chip-option>
 
@@ -55,7 +54,7 @@
                 <div class="card-body">
                     <div class="saved">
                         <div class="main-img">
-                            <img src="https://logo.clearbit.com/google.com" alt="" class="card__logo">
+                            <img src={{i.logo}} alt="" class="card__logo">
                             <h5 class="card-title">{{i.cname}}</h5>
                         </div>
                         <h3>
@@ -80,6 +79,7 @@
                     <div class="content-card d-flex mt-2 mb-2">
                         <div class="cardtext col-md-11">
                             <p><span>{{i.state}},{{i.location}}</span> </p>
+                            <p>{{i.createdDate}}</p>
                         </div>
 
                     </div>

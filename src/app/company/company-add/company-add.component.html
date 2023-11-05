@@ -36,7 +36,8 @@
               
                 <div class="col-sm-6 form-group">
                     <label for="expirence">Expirence</label>
-                    <select id="expirence" formControlName="expirence" (change)="updateSelectedexpirence()" class="form-control browser-default custom-select">
+                    <select id="expirence" formControlName="expirence" (change)="updateSelectedexpirence()" 
+                    class="form-control browser-default custom-select">
                         <option value="Entry Level">Entry Level</option>
                         <option value="1 - 2">1 - 2</option>
                         <option value="2 - 4">2 - 4</option>
@@ -54,16 +55,22 @@
                     <input type="address" class="form-control" name="resume" id="resume" placeholder="Resume" required>
                 </div> -->
                 <div class="col-sm-6 form-group">
-                    <label for="state">State</label>
-                    <input type="address" class="form-control" formControlName="state" name="state" id="state"
-                        placeholder="State" required>
-                </div>
-                <div class="col-sm-6 form-group">
                     <label for="Country">Country</label>
-                    <select id="country" formControlName="country" (change)="updateCountry()" class="form-control browser-default custom-select">
+                    <select id="country" formControlName="country"  (change)="updateCountry()" name="selectedCountry" class="form-control browser-default custom-select">
                         <option value="India">India</option>
+                        <option value="United States">United States</option>
+                        <!-- Add other country options here -->
                     </select>
                 </div>
+                
+                <div class="col-sm-6 form-group">
+                    <label for="state">State</label>
+                    <select id="state" formControlName="state" name="state" (change)="updateState()" class="form-control">
+                        <option *ngFor="let state of generateStateList()" [value]="state">{{ state }}</option>
+                    </select>
+                </div>
+                
+                
                 <div class="col-sm-6 form-group">
                     <label for="jobtype">Job Type</label>
                     <select id="jobtype" formControlName="jobType" (change)="updateSelectedType()" class="form-control browser-default custom-select">

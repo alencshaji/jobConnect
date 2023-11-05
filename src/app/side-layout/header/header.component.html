@@ -8,8 +8,8 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link active">Home</a>
-                <li class="nav-item dropdown">
+                <a (click)="home()" class="nav-item nav-link active">Home</a>
+                <li class="nav-item dropdown" *ngIf="isLogin">
                     <a class="nav-item nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">View</a></li>
@@ -18,7 +18,7 @@
                       </ul>
                 </li>
                 
-                <a class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="appiedJobs()">Applied Jobs</a>
+                <a class="nav-item nav-link" *ngIf="isLogin" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="appiedJobs()">Applied Jobs</a>
             </div>
             <form class="d-flex">
                 <div class="input-group">
@@ -35,10 +35,10 @@
                 </div>
             </form>
             <div class="navbar-nav d-flex">
-                <a class="nav-item nav-link" matTooltip="Login/Signup" routerLink="user/login"><span class="material-symbols-outlined">
+                <a class="nav-item nav-link" *ngIf="!isLogin" matTooltip="Login/Signup" routerLink="user/login"><span class="material-symbols-outlined">
                     login
                     </span></a>
-                <a   class="nav-item nav-link" (click)="logOut()" matTooltip="Logout"><span class="material-symbols-outlined">
+                <a   class="nav-item nav-link" *ngIf="isLogin"  (click)="logOut()" matTooltip="Logout"><span class="material-symbols-outlined">
                     logout
                     </span></a>
             </div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataServiceService } from 'src/app/data-service/data-service.service';
+import { formatDistanceToNow } from 'date-fns';
+
 @Component({
   selector: 'app-company-edit',
   templateUrl: './company-edit.component.html',
@@ -15,7 +17,8 @@ export class CompanyEditComponent implements OnInit {
   jData: any = ''
   jId: any = ''
   cname: any = ''
-  cid:any=''
+  cid: any = ''
+  creationDate:String='';
   editForm = this.fb.group({
     jobTitle: ['', [Validators.required]],
     expirence: ['', [Validators.required]],
@@ -27,34 +30,36 @@ export class CompanyEditComponent implements OnInit {
     state: ['', [Validators.required]]
   })
   ngOnInit(): void {
-    this.cid=localStorage.getItem("cid")
+    this.cid = localStorage.getItem("cid")
     this.ar.params.subscribe((data: any) => {
       this.jId = data.id
     })
     this.detailsJob()
-   
-    this.cname =localStorage.getItem("company")
+
+    this.cname = localStorage.getItem("company")
   }
-  constructor(private fb: FormBuilder, private db: DataServiceService,private route:Router, private ar: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private db: DataServiceService, private route: Router, private ar: ActivatedRoute) { }
 
   detailsJob() {
     this.db.getOneJob(this.jId).subscribe({
       next: (result: any) => {
-        this.jData = result.message
+        this.jData = result.message;
+        const createdAt = new Date(result.message.createdAt);
+        this.creationDate = formatDistanceToNow(createdAt, { addSuffix: true });
       },
       error: (result: any) => {
         alert('An error occurred while edit the job.');
       }
-    })
+    });
   }
-
+  
   updateJob() {
-this.db.editJobs(this.jId,this.jData).subscribe({
-  next:(result:any)=>{
-    alert("Updated")
-    this.route.navigateByUrl("/company")
-  }
-})
+    this.db.editJobs(this.jId, this.jData).subscribe({
+      next: (result: any) => {
+        alert("Updated")
+        this.route.navigateByUrl("/company")
+      }
+    })
   }
 
 
@@ -75,7 +80,7 @@ this.db.editJobs(this.jId,this.jData).subscribe({
     const couValue = this.editForm.get('country')?.value;
     this.selectedCountry = couValue;
   }
-  logout(){
+  logout() {
     localStorage.clear()
     this.route.navigateByUrl("/company/login-signup")
   }

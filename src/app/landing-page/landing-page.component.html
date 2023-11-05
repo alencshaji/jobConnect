@@ -1,165 +1,144 @@
 <section class="ban_sec">
     <div class="container1">
-        <div class="ban_img">
-            <img src="https://i.postimg.cc/NGWtVQCG/abstract-background-with-low-poly-design.jpg" alt="banner">
-            <div class="ban_text">
-                <strong>
-                    <span>Career Builder</span><br> Job Connect
-                </strong>
-                <p>
-                    Connecting job seekers and employers <br> through a user-friendly platform
-                </p>
-
-                <a href="#">Connect</a>
-            </div>
+      <div class="ban_img">
+        <img src="https://i.postimg.cc/NGWtVQCG/abstract-background-with-low-poly-design.jpg" alt="banner">
+        <div class="ban_text">
+          <strong>
+            <span>Career Builder</span><br> Job Connect
+          </strong>
+          <p>
+            Connecting job seekers and employers <br> through a user-friendly platform
+          </p>
+          <a href="#">Connect</a>
         </div>
+      </div>
     </div>
-</section>
-
-
-<div class="sec-2">
+  </section>
+  
+  <div class="sec-2">
     <div class="container">
-
-        <div class="menu-sec">
-            <div class="menu-btn">
-                <div class="btn-group">
-                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Sort By
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
-                    <mat-chip-option (click)="categoryJob('All')" [selected]="selectedCategory === 'All'">All</mat-chip-option>
-                    <mat-chip-option (click)="categoryJob('Full-time')" [selected]="selectedCategory === 'Full-time'">Full-time</mat-chip-option>
-                    <mat-chip-option (click)="categoryJob('Part-time')" [selected]="selectedCategory === 'Part-time'">Part-time</mat-chip-option>
-                    <mat-chip-option (click)="categoryJob('Contract')" [selected]="selectedCategory === 'Contract'">Contract</mat-chip-option>    
-                <button class="btn">
-                    Filter <i class="fa fa-duotone fa-sort"></i>
+      <div class="menu-sec">
+        <div class="menu-btn">
+          <div class="btn-group">
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Job posted</a></li>
+            </ul>
+          </div>
+          <mat-chip-option (click)="categoryJob('All')" [selected]="selectedCategory === 'All'">All</mat-chip-option>
+          <mat-chip-option (click)="categoryJob('Full time')" [selected]="selectedCategory === 'Full time'">Full time</mat-chip-option>
+          <mat-chip-option (click)="categoryJob('Part time')" [selected]="selectedCategory === 'Part time'">Part time</mat-chip-option>
+          <mat-chip-option (click)="categoryJob('Contract')" [selected]="selectedCategory === 'Contract'">Contract</mat-chip-option>
+          <!-- <button class="btn" >
+            Filter <i class="fa fa-duotone fa-sort"></i>
+          </button> -->
+        </div>
+      </div>
+      <div class="job-head">
+        <h1>Top Picks For You ->></h1>
+      </div>
+      <div class="cards">
+        <div class="card mt-2 p-2" *ngFor="let i of filteredProducts | headSearch: searchString: ['title', 'cname']">
+          <div class="card-body">
+            <div class="saved">
+              <div class="main-img">
+                <img src={{i.logo}} alt="" class="card__logo">
+                <h5 class="card-title">{{ i.cname }}</h5>
+              </div>
+              <h3>
+                <a class="star-saved" (click)="savedJobs(i._id)" matTooltip="Save Job">
+                  <span class="material-icons" [ngClass]="starClr ? 's1' : 's2'">
+                    star_rate
+                  </span>
+                </a>
+              </h3>
+            </div>
+            <div class="content-card d-flex justify-content-between">
+              <h4 class="card-title col-md-10 col-sm-6"><strong>{{ i.title }}</strong></h4>
+              <div class="col-md-2 col-sm-6 text-right">
+                <button class="btn btn-view" data-bs-target="#exampleModal" (click)="view(i._id)" data-bs-toggle="modal">
+                  View
                 </button>
+                <button class="btn btn-apply" (click)="applyLink(i.cid, i._id)">Apply</button>
+              </div>
             </div>
-        </div>
-
-        <div class="job-head">
-            <h1>Top Picks For You ->></h1>
-        </div>
-        <div class="cards">
-            <div class="card mt-2 p-2" *ngFor="let i of filteredProducts| headSearch: searchString:['title','cname']">
-                <div class="card-body">
-                    <div class="saved">
-                        <div class="main-img">
-                            <img src="https://logo.clearbit.com/google.com" alt="" class="card__logo">
-                            <h5 class="card-title">{{i.cname}}</h5>
-                        </div>
-                        <h3>
-                            <a class=" star-saved" (click)="savedJobs(i._id)" matTooltip="Save Job">
-                                <span class="material-icons" [ngClass]="starClr? 's1' : 's2'">
-                                  star_rate
-                                </span> 
-                              </a>
-                        </h3>
-                    </div>
-
-                    <div class="content-card d-flex justify-content-between">
-                        <h4 class="card-title col-md-10 col-sm-6"><strong>{{i.title}}</strong></h4>
-
-                        <div class="col-md-2 col-sm-6 text-right">
-                            <button class="btn btn-view" data-bs-target="#exampleModal" (click)="view(i._id)"
-                                data-bs-toggle="modal">View</button>
-                            <button class="btn btn-apply" (click)="applyLink(i.cid,i._id)">Apply</button>
-                        </div>
-                    </div>
-
-                    <div class="content-card d-flex mt-2 mb-2">
-                        <div class="cardtext col-md-11">
-                            <p><span>{{i.state}},{{i.location}}</span> </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <div class="content-card d-flex mt-2 mb-2">
+              <div class="cardtext col-md-11">
+                <p><span>{{ i.state }},{{ i.location }}</span></p>
+                <p>{{ i.createdDate }}</p>
+              </div>
             </div>
-
+          </div>
         </div>
-        <button class="  btn-more float-end" (click)=" more()">More Listing</button>
+      </div>
+      <button class="btn-more float-end" (click)="more()">More Listing</button>
     </div>
-
-</div>
-
-<div class="sec-3">
+  </div>
+  
+  <div class="sec-3">
     <div class="container">
-        <div class="companies">
-            <div class="company-head">
-                <h1>Popular Companies</h1>
-            </div>
+      <div class="companies">
+        <div class="company-head">
+          <h1>Popular Companies</h1>
         </div>
-
-        <div class="cards cards-comp">
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="https://www.investopedia.com/thmb/4mQYo6Nbw4WfmN3CN1Q99-QEhd8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shutterstock_227705986_google_android_robot-5bfc3afbc9e77c00587b1dcf.jpg"
-                            class="card-img-top" alt="Google" />
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="https://i.postimg.cc/zGSPs9VJ/Apple.jpg" class="card-img-top" alt="Apple" />
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="https://i.postimg.cc/ry0ZVdKZ/ms.jpg" class="card-img-top" alt="microsoft" />
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="https://i.postimg.cc/zGj0tKcv/amazon.jpg" class="card-img-top" alt="amazon" />
-                    </div>
-                </div>
-
+      </div>
+      <div class="cards cards-comp">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="card">
+              <img src="https://www.investopedia.com/thmb/4mQYo6Nbw4WfmN3CN1Q99-QEhd8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shutterstock_227705986_google_android_robot-5bfc3afbc9e77c00587b1dcf.jpg"
+                class="card-img-top" alt="Google" />
             </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="card">
+              <img src="https://i.postimg.cc/zGSPs9VJ/Apple.jpg" class="card-img-top" alt="Apple" />
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="card">
+              <img src="https://i.postimg.cc/ry0ZVdKZ/ms.jpg" class="card-img-top" alt="microsoft" />
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="card">
+              <img src="https://i.postimg.cc/zGj0tKcv/amazon.jpg" class="card-img-top" alt="amazon" />
+            </div>
+          </div>
         </div>
-
+      </div>
     </div>
-</div>
-<button class="scroll-to-top" (click)="scrollToTop()">
+  </div>
+  
+  <button class="scroll-to-top" (click)="scrollToTop()">
     <i class="fa fa-solid fa-angle-up"></i>
-</button>
-<!-- Modal -->
-<div class="modal fade modal-cont" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade modal-cont" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-                <h3 class="modal-title" id="exampleModalLabel">
-                    {{singleView.cname}}
-                </h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="role ">
-                    <p>Job role : {{singleView.role}}</p>
-                </div>
-                <div class="head-modal flex-prop">
-                    <h4>Position : {{ singleView.title }}</h4>
-                    <h4>Experience : {{singleView.expirence}}</h4>
-                </div>
-                <div class="bodytext flex-prop">
-                    <h4>Job Type : {{singleView.jobtype}}</h4>
-                    <h4>Salary : {{singleView.salary}}</h4>
-
-                </div>
-                <h5 class="text-botom">Location : {{singleView.location}}</h5>
-            </div>
-            <div class="modal-footer border-top-0 d-flex">
-                <button type="button" class="btn btn-primary" (click)="applyLink(singleView.cid,singleView._id)">Apply</button>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <h3 class="modal-title" id="exampleModalLabel">{{ singleView.cname }}</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <div class="role">
+            <p>Job role : {{ singleView.role }}</p>
+          </div>
+          <div class="head-modal flex-prop">
+            <h4>Position : {{ singleView.title }}</h4>
+            <h4>Experience : {{ singleView.expirence }}</h4>
+          </div>
+          <div class="bodytext flex-prop">
+            <h4>Job Type : {{ singleView.jobtype }}</h4>
+            <h4>Salary : {{ singleView.salary }}</h4>
+          </div>
+          <h5 class="text-botom">Location : {{ singleView.location }}</h5>
+        </div>
+        <div class="modal-footer border-top-0 d-flex">
+          <button type="button" class="btn btn-primary" (click)="applyLink(singleView.cid, singleView._id)">Apply</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  

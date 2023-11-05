@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/data-service/data-service.service';
+import { formatDistanceToNow } from 'date-fns';
+
 
 @Component({
   selector: 'app-company-home',
@@ -14,11 +16,21 @@ export class CompanyHomeComponent implements OnInit {
   msg:any=''
   pdata: any = []
   adata: any = []
+ 
+  searchString: any = ""
+  job:any=[]
+  creationDate:String='';
+  searchData: string = '';
+
+
   ngOnInit(): void {
     this.cname = localStorage.getItem("company")
     this.cid = localStorage.getItem("cid")
     this.allJObs()
     this.scrollToTop()
+    this.db.search.subscribe((data: any) => {
+      this.searchString = data
+    })
   }
   constructor(private fb: FormBuilder, private route: Router, private db: DataServiceService) { }
   scrollToTop() {
@@ -28,18 +40,26 @@ export class CompanyHomeComponent implements OnInit {
   allJObs() {
     this.db.allJObs().subscribe({
       next: (result: any) => {
-        this.adata = result.message
-        this.pdata = this.adata.filter((job: any) => job.cid === this.cid)
+        this.adata = result.message;
+        this.pdata = this.adata.filter((job: any) => job.cid === this.cid);
+  
+        // Add creation date for each job post
+        this.pdata.forEach((job: any) => {
+          const createdAt = new Date(job.createdAt);
+          job.creationDate = formatDistanceToNow(createdAt, { addSuffix: true });
+        });
+  
         console.log(this.pdata);
-        if(this.pdata.length === 0){
-          this.msg = '"No Jobs Posted"'
+        if (this.pdata.length === 0) {
+          this.msg = 'No Jobs Posted';
         }
       },
       error: (result: any) => {
-        alert(result)
+        alert(result);
       }
-    })
+    });
   }
+  
 
   addPost() {
     this.route.navigateByUrl("/company/add-job")
@@ -57,8 +77,17 @@ export class CompanyHomeComponent implements OnInit {
     }
     
   }
+
+  accessData(event: any) {
+    this.searchData = event.target.value;
+    console.log('Search Data (accessData):', this.searchData); // Add this line
+    this.db.search.next(this.searchData);
+    console.log('Search Data (BehaviorSubject):', this.searchData); // Add this line
+  }
+
   logout(){
     localStorage.clear()
     this.route.navigateByUrl("/company/login-signup")
   }
+
 }

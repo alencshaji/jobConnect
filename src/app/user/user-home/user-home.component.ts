@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataServiceService } from 'src/app/data-service/data-service.service';
 import Swal from 'sweetalert2';
+import { formatDistanceToNow } from 'date-fns';
+
 @Component({
   selector: 'app-user-home',
   templateUrl: './user-home.component.html',
@@ -51,7 +53,11 @@ export class UserHomeComponent implements OnInit {
     this.db.allJObs().subscribe({
       next: (result: any) => {
         const userCategory = localStorage.getItem('cat');
+
+       
         this.pdata = result.message.sort((a: any, b: any) => {
+
+
           if (a.category === userCategory && b.category !== userCategory) {
             return -1; // job user's category at the beginning
           } else if (a.category !== userCategory && b.category === userCategory) {
@@ -59,15 +65,17 @@ export class UserHomeComponent implements OnInit {
           } else {
             return 0; // Maintain the order within the same category
           }
+  
+        
         });
         this.categoryJob('All');
-
       },
       error: (result: any) => {
-        alert(result)
+        alert(result);
       }
-    })
+    });
   }
+  
   applyLink(cid: any, jid: any) {
 
     if (localStorage.getItem("user")) {
@@ -161,20 +169,37 @@ export class UserHomeComponent implements OnInit {
 
   }
   categoryJob(selectedCategory: string) {
-    this.selectedCategory = selectedCategory
-
+    this.selectedCategory = selectedCategory;
+  
     if (selectedCategory === 'All') {
       // Show all products when "All" is selected
       this.filteredProducts = this.pdata;
-      console.log(this.filteredProducts);
-
     } else {
       // Filter products by category name
       this.filteredProducts = this.pdata.filter((item: any) => item.jobtype === selectedCategory);
     }
+    // Add createdDate for each job post in the filteredProducts array
+    this.filteredProducts.forEach((job: any) => {
+    job.createdAt = new Date(job.createdAt);
+      job.createdDate = formatDistanceToNow(job.createdAt, { addSuffix: true });
+    });
+    this.filteredProducts = this.filteredProducts.slice(0, 10);
   }
+  sortJobs(sortBy: string) {
+    if (sortBy === 'posted') {
+      this.filteredProducts = this.filteredProducts.sort((a: any, b: any) => {
+        return b.createdAt - a.createdAt;
+      });
+    }
+  }
+  
+  
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  download(){
+    
   }
 
 }

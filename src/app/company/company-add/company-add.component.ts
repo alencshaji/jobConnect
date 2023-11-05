@@ -12,9 +12,11 @@ export class CompanyAddComponent implements OnInit {
   selectedCategory: any = ''
   selectedType: any = ''
   selectedExp: any = ''
-  selectedCountry: any = ''
+  selectedCountry: any = '';
+  selectedState: any = ''
   cid: any = ''
   companyname: any = ''
+ 
   jobForm = this.fb.group({
     jobTitle: ['', [Validators.required]],
     expirence: ['', [Validators.required]],
@@ -26,13 +28,100 @@ export class CompanyAddComponent implements OnInit {
     state: ['', [Validators.required]]
 
   })
+  indianStates: string[] = [
+    'Andhra Pradesh',
+    'Arunachal Pradesh',
+    'Assam',
+    'Bihar',
+    'Chhattisgarh',
+    'Goa',
+    'Gujarat',
+    'Haryana',
+    'Himachal Pradesh',
+    'Jharkhand',
+    'Karnataka',
+    'Kerala',
+    'Madhya Pradesh',
+    'Maharashtra',
+    'Manipur',
+    'Meghalaya',
+    'Mizoram',
+    'Nagaland',
+    'Odisha',
+    'Punjab',
+    'Rajasthan',
+    'Sikkim',
+    'Tamil Nadu',
+    'Telangana',
+    'Tripura',
+    'Uttar Pradesh',
+    'Uttarakhand',
+    'West Bengal'
+  ];
+  usStates: string[] = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Carolina',
+    'North Dakota',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming'
+    // Add more U.S. states here
+  ];
+  
+
+
+
   constructor(private fb: FormBuilder, private db: DataServiceService, private route: Router) { }
   ngOnInit(): void {
     this.companyname = localStorage.getItem("company")
   }
   companyid = localStorage.getItem("cid")
 
-
+ 
   addJob() {
     if (this.jobForm.valid) {
       const path = this.jobForm.value
@@ -88,7 +177,24 @@ export class CompanyAddComponent implements OnInit {
     const couValue = this.jobForm.get('country')?.value;
     this.selectedCountry = couValue;
   }
-  logout(){
+  updateState() {
+    const couValue = this.jobForm.get('state')?.value;
+    this.selectedState = couValue;
+  }
+
+  generateStateList(): string[] {
+    switch (this.selectedCountry) {
+      case 'India':
+        return this.indianStates;
+      case 'United States':
+        return this.usStates;
+      default:
+        return [];
+    }
+  }
+  
+
+  logout() {
     localStorage.clear()
     this.route.navigateByUrl("/company/login-signup")
   }

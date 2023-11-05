@@ -28,7 +28,7 @@
             <ul class="listings__grid">
                 <li class="card" *ngFor="let i of pdata  | stateSearch: searchStateString:['state'] | headerSearch: searchString:['title', 'cname','jobtype']">
                     <div class="more">
-                        <img src="https://logo.clearbit.com/google.com" alt="" class="card__logo" />
+                        <img src={{i.logo}} alt="Logo" class="card__logo" />
                         <h3>
                             <a class=" star-saved" (click)="savedJobs(i._id)" matTooltip="Save Job">
                                 <span class="material-icons" [ngClass]="starClr? 's1' : 's2'">
@@ -42,7 +42,7 @@
                     <div class="card__text">{{i.cname}}</div>
                     <div class="card__text">{{i.state}},{{i.location}}</div>
                     <hr class="card__separator" />
-                    <div class="card__text card__text--small">6 days ago</div>
+                    <div class="card__text card__text--small">{{i.createdDate}}</div>
                     <div class="d-flex justify-content-between align-items-center">
                         <button class="btn btn-apply" data-bs-toggle="modal" data-bs-target="#exampleModal"
                             (click)="view(i._id)">Apply</button>

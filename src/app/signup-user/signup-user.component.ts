@@ -11,8 +11,9 @@ import { DataServiceService } from '../data-service/data-service.service';
 export class SignupUserComponent {
   selectedGender: any = '';
   selectedCategory: any = '';
-  selectedCountry: any = '';
   selectedFileName: string = '';
+  selectedCountry: any = '';
+  selectedState: any = ''
   signUpForm = this.fb.group({
     fname: ["", [Validators.required]],
     lname: ["", [Validators.required]],
@@ -29,7 +30,89 @@ export class SignupUserComponent {
     category: ["", [Validators.required]],
 
   })
-
+  indianStates: string[] = [
+    'Andhra Pradesh',
+    'Arunachal Pradesh',
+    'Assam',
+    'Bihar',
+    'Chhattisgarh',
+    'Goa',
+    'Gujarat',
+    'Haryana',
+    'Himachal Pradesh',
+    'Jharkhand',
+    'Karnataka',
+    'Kerala',
+    'Madhya Pradesh',
+    'Maharashtra',
+    'Manipur',
+    'Meghalaya',
+    'Mizoram',
+    'Nagaland',
+    'Odisha',
+    'Punjab',
+    'Rajasthan',
+    'Sikkim',
+    'Tamil Nadu',
+    'Telangana',
+    'Tripura',
+    'Uttar Pradesh',
+    'Uttarakhand',
+    'West Bengal'
+  ];
+  usStates: string[] = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Carolina',
+    'North Dakota',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming'
+    // Add more U.S. states here
+  ];
 
   constructor(private fb: FormBuilder, private db: DataServiceService) { }
 
@@ -137,6 +220,21 @@ export class SignupUserComponent {
   updateCountry() {
     const couValue = this.signUpForm.get('country')?.value;
     this.selectedCountry = couValue;
+  }
+  updateState() {
+    const couValue = this.signUpForm.get('state')?.value;
+    this.selectedState = couValue;
+  }
+
+  generateStateList(): string[] {
+    switch (this.selectedCountry) {
+      case 'India':
+        return this.indianStates;
+      case 'United States':
+        return this.usStates;
+      default:
+        return [];
+    }
   }
 }
 

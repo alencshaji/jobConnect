@@ -6,9 +6,10 @@ import { CompanyHomeComponent } from './company-home/company-home.component';
 import { CompanyAddComponent } from './company-add/company-add.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CompanyViewApplicantsComponent } from './company-view-applicants/company-view-applicants.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 @NgModule({
@@ -17,13 +18,15 @@ import { CompanyViewApplicantsComponent } from './company-view-applicants/compan
     CompanyAddComponent,
     CompanyEditComponent,
     CompanyHomeComponent,
-    CompanyViewApplicantsComponent
+    CompanyViewApplicantsComponent,
+    SearchPipe
 
   ],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ]

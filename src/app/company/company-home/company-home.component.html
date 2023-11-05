@@ -24,8 +24,9 @@
             <button class="btn btn-add mb-1" routerLink="/company/add-job">Add Job</button>
             <form class="form-inline">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" aria-label="Search"
-                        aria-describedby="search-button">
+                    <input [(ngModel)]="searchData" name="searchData" (keyup)="accessData($event)"
+                    autocomplete="off" type="search" class="form-control rounded" placeholder="Search"
+                    style="min-width: 125px;" />
                     <div class="input-group-append">
                         <button class="btn btn-primary " type="button" id="search-button">Search</button>
                     </div>
@@ -36,7 +37,7 @@
             <h4 class="mt-1">Job Listed By You >>></h4>
             <h2 class="text-center msge">{{msg}}</h2>
             <!-- Card Start -->
-            <div class="card mt-2 p-2" *ngFor="let i of pdata">
+            <div class="card mt-2 p-2" *ngFor="let i of pdata | search: searchString:['title','creationDate']">
                 <!-- Put Image Here -->
                 <div class="card-body">
                     <h5 class="card-title">Job Details</h5>
@@ -61,6 +62,7 @@
 
                     </div>
                     <p class="card-text"><strong>Job Role : </strong>{{i.role}}</p>
+                    <p class="card-text" disabled>{{ i.creationDate }}</p>
                     <div class="btns-sec ">
                         <button class="b1 btn " routerLink="/company/edit-job/{{i._id}}">
                             <span class="material-icons">

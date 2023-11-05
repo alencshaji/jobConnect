@@ -13,7 +13,8 @@ export class LoginSignupCompComponent {
   companyRgForm = this.fb.group({
     cname: ['', [Validators.required]],
     email: ['', [Validators.required]],
-    psw: ['', [Validators.required]]
+    psw: ['', [Validators.required]],
+    logo:['',[Validators.required]]
   })
   compnayLogForm = this.fb.group({
     cmail: ['', [Validators.required]],
@@ -24,7 +25,7 @@ export class LoginSignupCompComponent {
 
   register() {
     if(this.companyRgForm.valid){
-      this.db.companyRegister(this.companyRgForm.value.cname, this.companyRgForm.value.email, this.companyRgForm.value.psw)
+      this.db.companyRegister(this.companyRgForm.value.cname, this.companyRgForm.value.email, this.companyRgForm.value.psw,this.companyRgForm.value.logo)
       .subscribe({
         next: (result: any) => {
           alert("Registred Succesfully")
@@ -50,7 +51,7 @@ export class LoginSignupCompComponent {
           this.route.navigateByUrl("/company")
         },
         error: (result: any) => {
-          alert(result.message)
+          alert(result.error.message)
         }
       })
     }else{

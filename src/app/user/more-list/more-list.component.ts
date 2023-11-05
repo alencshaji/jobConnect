@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { format, formatDistanceToNow } from 'date-fns';
 import { DataServiceService } from 'src/app/data-service/data-service.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -21,6 +22,7 @@ export class MoreListComponent implements OnInit {
   searchData: string = '';
   filteredProducts: any = [];
   selectedCategory: string = 'All';
+  job:any=[]
 
   ngOnInit(): void {
     this.scrollToTop()
@@ -54,6 +56,12 @@ export class MoreListComponent implements OnInit {
     this.db.allJObs().subscribe({
       next: (result: any) => {
         this.pdata = result.message
+        this.pdata.forEach((job:any)=>{
+          job.createdAt = new Date(job.createdAt);
+          job.createdDate = formatDistanceToNow(job.createdAt,{addSuffix:true})
+        })
+        this.pdata.sort((a:any,b:any)=>b.createdAt - a.createdAt)
+
 
       },
       error: (result: any) => {
@@ -166,5 +174,6 @@ export class MoreListComponent implements OnInit {
        this.filteredProducts = this.pdata.filter((item: any) => item.jobtype === selectedCategory);
      }
    } 
+   
 
 }
