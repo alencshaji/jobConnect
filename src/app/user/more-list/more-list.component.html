@@ -19,14 +19,14 @@
             <form action="">
                 <input type="text" [(ngModel)]="searchData" name="searchData" (keyup)="accessData($event)"
                 autocomplete="off" type="search" placeholder="Search by title,company or job type" />
-                <input type="text" [(ngModel)]="searchState" name="searchState" (keyup)="accessStateData($event)" autocomplete="off" type="search" placeholder="Search State" />
+                <input type="text" [(ngModel)]="searchState" name="searchState" (keyup)="accessStateData($event)" autocomplete="off" type="search" placeholder="Search Country or State" />
             </form>
         </div>
 
         <div class="listings container">
             <h3 class="listings__heading">More Jobs</h3>
             <ul class="listings__grid">
-                <li class="card" *ngFor="let i of pdata  | stateSearch: searchStateString:['state'] | headerSearch: searchString:['title', 'cname','jobtype']">
+                <li class="card" *ngFor="let i of pdata  | stateSearch: searchStateString:['state','location'] | headerSearch: searchString:['title', 'cname','jobtype']">
                     <div class="more">
                         <img src={{i.logo}} alt="Logo" class="card__logo" />
                         <h3>

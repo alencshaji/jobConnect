@@ -106,10 +106,6 @@ export class DataServiceService {
     return this.http.put(`${this.baseUrl}company/application/status/${cid}/${uid}/${jid}`,body)
   }
   
-  view(path: string) {
-    return this.http.get(`${this.baseUrl}${path}`);
-  }
-  
   
   
   

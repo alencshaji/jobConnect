@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-sm-6 form-group">
                     <label for="resume">Resume</label>
-                    <input type="file" (change)=" uploadResume($event)" />
+                    <input type="file" formControlName="resume" (change)=" uploadResume($event)" />
                     <p *ngIf="selectedFileName">{{selectedFileName}}</p>
                     
                 </div>

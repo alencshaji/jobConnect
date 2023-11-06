@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/data-service/data-service.service';
 import Swal from 'sweetalert2';
 import { formatDistanceToNow } from 'date-fns';
-import { saveAs } from 'file-saver';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-company-view-applicants',
@@ -15,12 +15,13 @@ export class CompanyViewApplicantsComponent implements OnInit {
   pdata: any = []
   adata: any = []
   cid: any = ''
+  baseUrl: any = "http://localhost:5004/"
   msg: any = ''
   status: any = 'Confirmed'
   job:any=[]
   creationDate:String='';
 
-  constructor(private db: DataServiceService,private route:Router) { }
+  constructor(private db: DataServiceService,private route:Router,private http:HttpClient) { }
   ngOnInit(): void {
     this.cname = localStorage.getItem("company")
     console.log(this.cname);
@@ -78,29 +79,14 @@ export class CompanyViewApplicantsComponent implements OnInit {
       }
     })
   }
- viewPdf(path: any) {
-  console.log(path);
-
-  this.db.view(path).subscribe({
-    next: (result: any) => {
-      // Assuming the response is binary data, create a Blob object
-      const blob = new Blob([result], { type: 'application/pdf' });
-      // Create a URL for the blob data
-      const url = window.URL.createObjectURL(blob);
-
-      // Open the PDF in a new tab
-      window.open(url);
-
-      // Clean up by revoking the URL
-      window.URL.revokeObjectURL(url);
-    },
-    error: (error: any) => {
-      console.error(error);
-      alert('Error occurred while fetching the PDF.');
-    }
-  });
-}
-
+  viewPdf(path: string) {
+    const fullUrl = this.baseUrl + path;
+    console.log(fullUrl);
+  
+    // Open the URL in a new window
+    window.open(fullUrl, '_blank');
+  }
+  
   showConfirmedlert() {
     Swal.fire({
       title: "Confirmed",

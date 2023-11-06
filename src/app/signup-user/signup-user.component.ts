@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataServiceService } from '../data-service/data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-user',
@@ -114,7 +115,7 @@ export class SignupUserComponent {
     // Add more U.S. states here
   ];
 
-  constructor(private fb: FormBuilder, private db: DataServiceService) { }
+  constructor(private fb: FormBuilder, private db: DataServiceService,private route:Router) { }
 
 
   uploadResume(event: any) {
@@ -128,45 +129,7 @@ export class SignupUserComponent {
 
 
 
-  // userSignup() {
-  //   if (this.signUpForm.valid) {
 
-  //     const file = this.signUpForm.get('resume')!.value as File;
-
-  //     const path = this.signUpForm.value
-  //     const formData = {
-  //       fname: path.fname,
-  //       lname: path.lname,
-  //       username: path.uname,
-  //       email: path.email,
-  //       psw: path.psw,
-  //       country: path.country,
-  //       category: path.category,
-  //       state: path.state,
-  //       dob: path.dob,
-  //       gender: path.gender,
-  //       cod: path.cod,
-  //       ph: path.ph,
-  //       resume: file,
-  //     }
-  //     console.log(formData);
-
-
-
-
-  //     this.db.userRegister(formData).subscribe({
-  //       next: (result: any) => {
-  //         alert('Registered Successfully');
-  //         this.signUpForm.reset();
-  //       },
-  //       error: (result: any) => {
-  //         alert(result.error.message);
-  //       }
-  //     });
-  //   } else {
-  //     alert('Invalid data');
-  //   }
-  // }
   userSignup() {
     if (this.signUpForm.valid) {
       const formData = new FormData();
@@ -196,13 +159,14 @@ export class SignupUserComponent {
         next: (result: any) => {
           alert('Registered Successfully');
           this.signUpForm.reset();
+          this.route.navigateByUrl('/user/login')
         },
         error: (result: any) => {
           alert(result.error.message);
         }
       });
     } else {
-      alert('Invalid data');
+      alert('All fields are required');
     }
   }
   
