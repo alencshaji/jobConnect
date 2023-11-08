@@ -11,7 +11,7 @@ export class DataServiceService {
   }
 
 
-  baseUrl: any = "http://localhost:5004/"
+  baseUrl: any = "https://job-connect-server.onrender.com/"
 
   search = new BehaviorSubject("")
   searchState = new BehaviorSubject("")

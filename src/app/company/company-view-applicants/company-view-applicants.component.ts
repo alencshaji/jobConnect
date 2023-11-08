@@ -15,7 +15,7 @@ export class CompanyViewApplicantsComponent implements OnInit {
   pdata: any = []
   adata: any = []
   cid: any = ''
-  baseUrl: any = "http://localhost:5004/"
+  baseUrl: any = "https://job-connect-server.onrender.com/"
   msg: any = ''
   status: any = 'Confirmed'
   job:any=[]
@@ -40,7 +40,7 @@ export class CompanyViewApplicantsComponent implements OnInit {
             applicant.creationDate = formatDistanceToNow(createdAt, { addSuffix: true });
           });
   
-          console.log(this.adata); // Check if applicants with creationDate are available
+          console.log(this.adata); 
   
           this.pdata = this.adata.filter((applicant: any) => applicant.cid === this.cid);
   
